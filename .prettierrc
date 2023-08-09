@@ -5,7 +5,7 @@
   "trailingComma": "es5",
   "tabWidth": 2,
   "arrowParens": "avoid",
-  "importOrder": ["^components/(.*)$", "^[./]"],
+  "importOrder": ["^(next/(.*)$)|^(next$)", "^@[a-z](.*)$", "^@/(.*)$", "^[./]"],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true
 }
