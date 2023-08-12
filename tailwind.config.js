@@ -6,15 +6,21 @@ module.exports = {
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-
+  theme: {
+    extend: {
+      fontFamily: {
+        'uhbee-regular': ['var(--uhbee-regular)'],
+        'uhbee-bold': ['var(--uhbee-bold)'],
+      },
+    },
+  },
   darkMode: 'class',
   plugins: [
     nextui({
       themes: {
         normal: {
           colors: {
-            primary: '#4944FF',
-            background: '#000000',
+            primary: '#000000',
           },
         },
       },

@@ -16,6 +16,12 @@ export default function Home() {
 
   return (
     <>
+      <section className="flex flex-col gap-1 w-full">
+        <div className="font-uhbee-regular text-2xl">{session?.user.name} 님은</div>
+        <div className="font-uhbee-regular text-2xl">
+          총 <span className="text-amber-300">0</span> 개의 상을 받았습니다.
+        </div>
+      </section>
       <Button color="primary" onClick={() => signOut()}>
         Sign out
       </Button>
