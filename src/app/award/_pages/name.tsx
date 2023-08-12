@@ -20,7 +20,7 @@ export const NamePage: PageComponent = ({ onNext, onValueChange }) => {
           aria-labelledby="name"
         />
       </section>
-      <Button className="mt-5" color="primary" radius="sm" fullWidth={true} onClick={onNext}>
+      <Button color="primary" radius="sm" fullWidth={true} onClick={onNext}>
         확인
       </Button>
     </>

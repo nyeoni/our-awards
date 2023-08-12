@@ -38,3 +38,11 @@ body, main {
   height: 14px;
   background-image: url('/svgs/right-shelf.svg');
 }
+
+.oa-result {
+  width: 100%;
+  aspect-ratio: 1/1.414;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('/assets/result0.png');
+}

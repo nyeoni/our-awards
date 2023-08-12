@@ -14,8 +14,8 @@ export const ContentPage: PageComponent = ({ onNext, onValueChange }) => {
         </label>
         <Textarea
           name="content"
+          className="text-black"
           onChange={onValueChange}
-          color="default"
           fullWidth={true}
           placeholder="칭찬해주고 싶은 부분을 적어주세요."
           aria-labelledby="content"
