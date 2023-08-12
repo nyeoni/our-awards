@@ -1,5 +1,8 @@
 'use client';
 
+import html2canvas from 'html2canvas';
+import { useRef } from 'react';
+
 import Link from 'next/link';
 
 import { Button } from '@nextui-org/react';
@@ -7,8 +10,23 @@ import { Button } from '@nextui-org/react';
 import BackIcon from '/public/svgs/back.svg';
 
 export default function Page() {
+  const captureRef = useRef<HTMLDivElement>(null);
+
   const handleShare = () => {};
-  const handleSave = () => {};
+
+  const handleSaveImage = async () => {
+    if (!captureRef.current) return;
+    const canvas = await html2canvas(captureRef.current);
+    const imgData = canvas.toDataURL();
+
+    // Create a link to download the image
+    const link = document.createElement('a');
+    link.href = imgData;
+    link.download = new Date().getTime().toString() + 'award.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   return (
     <div className="flex flex-col justify-between w-full h-full">
       <Link className="flex items-center text-sm" href="/">
@@ -16,7 +34,10 @@ export default function Page() {
         <span className="ml-0.5 text-xs font-medium">메인페이지로</span>
       </Link>
       <div>
-        <section className="oa-result grow-1 mb-5 flex flex-col justify-between items-center p-[42px] font-uhbee-regular text-black">
+        <section
+          ref={captureRef}
+          className="oa-result grow-1 mb-5 flex flex-col justify-between items-center p-[42px] font-uhbee-regular text-black"
+        >
           <div className="flex flex-col items-center mt-5 w-full gap-3">
             <h1 className="font-uhbee-bold text-2xl">상장</h1>
             <div className="text-sm self-start">최고귀요미상</div>
@@ -33,7 +54,13 @@ export default function Page() {
           <Button color="primary" radius="sm" fullWidth={true} onClick={handleShare}>
             공유하기
           </Button>
-          <Button color="primary" variant="ghost" radius="sm" fullWidth={true} onClick={handleSave}>
+          <Button
+            color="primary"
+            variant="ghost"
+            radius="sm"
+            fullWidth={true}
+            onClick={handleSaveImage}
+          >
             사진으로 저장하기
           </Button>
         </section>

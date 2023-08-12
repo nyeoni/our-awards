@@ -105,7 +105,7 @@ export default function Home() {
         ))}
       </section>
       <Button
-        className="font-medium text-black justify-self-end mb-5"
+        className="font-medium text-black justify-self-end"
         fullWidth={true}
         radius="sm"
         color="secondary"
