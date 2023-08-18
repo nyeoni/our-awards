@@ -2,11 +2,12 @@
 
 import { ChangeEvent, createContext, useContext, useState } from 'react';
 
+import { redirect, useRouter } from 'next/navigation';
+
 import { Progress } from '@nextui-org/react';
 
-import { Loading } from '@/component';
-
 import { ContentPage, HostPage, NamePage } from './_pages';
+import Loading from './result/loading';
 
 const pages = [{ Component: NamePage }, { Component: ContentPage }, { Component: HostPage }];
 
@@ -28,22 +29,48 @@ export const useTargetInfoContext = () => {
 
 export default function Page() {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const [targetInfo, setTargetInfo] = useState({
     name: '',
     content: '',
     host: '',
   });
   const [step, setStep] = useState(0); // [0, 1, 2
-  const CurrentPageComponent = pages[step].Component;
+  const CurrentPageComponent = pages[step].Component ?? null;
+
+  const handleCreateAward = async () => {
+    console.log('create award');
+    try {
+      const res = await fetch('/api/award', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(targetInfo),
+      });
+
+      const { id } = await res.json();
+
+      if (res.status !== 200) {
+        // 고쳐야함
+        console.log('what the');
+      } else {
+        router.replace(`/award/result/${id}`);
+      }
+    } catch (error) {
+      throw new Error('gpt error');
+      // console.log('gpt fuck error', error);
+    }
+  };
 
   const handleNext = () => {
     if (step === pages.length - 1) {
-      // finish
       console.log('finish');
       setIsLoading(true);
-      return;
+      handleCreateAward();
+    } else {
+      setStep(step + 1);
     }
-    setStep(step + 1);
   };
 
   const handleTargetInfoChange = (e: ChangeEvent) => {
@@ -52,7 +79,7 @@ export default function Page() {
   };
 
   if (isLoading) {
-    return <Loading />;
+    <Loading />;
   }
   return (
     <>

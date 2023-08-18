@@ -14,7 +14,8 @@ export const ContentPage: PageComponent = ({ onNext, onValueChange }) => {
         </label>
         <Textarea
           name="content"
-          className="text-black"
+          variant="bordered"
+          color="primary"
           onChange={onValueChange}
           fullWidth={true}
           placeholder="칭찬해주고 싶은 부분을 적어주세요."

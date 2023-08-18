@@ -5,7 +5,7 @@ import { PageComponent } from './type';
 export const NamePage: PageComponent = ({ onNext, onValueChange }) => {
   return (
     <>
-      <section className="flex flex-col gap-3 justify-center h-full">
+      <section className="flex flex-col gap-3 justify-center w-full h-full">
         <label id="name">
           칭찬해주고 싶은 사람의 <span className="text-bold text-primary">이름</span> 을 적어주세요.
         </label>
