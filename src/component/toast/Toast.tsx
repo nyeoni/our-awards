@@ -6,18 +6,22 @@ import styles from './Toast.module.css';
 
 interface ToastProps {
   isVisible: boolean;
+  onClose?: () => void;
   message: string;
   duration?: number;
 }
 
-function Toast({ isVisible, message, duration = 3000 }: ToastProps) {
+function Toast({ isVisible, onClose, message, duration = 3000 }: ToastProps) {
   const [visible, setVisible] = useState(isVisible);
 
   useEffect(() => {
+    setVisible(isVisible);
+
     setTimeout(() => {
       setVisible(false);
+      if (onClose) onClose();
     }, duration);
-  }, []);
+  }, [isVisible]);
 
   return (
     <AnimatePresence>

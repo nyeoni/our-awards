@@ -1,10 +1,14 @@
+import { useState } from 'react';
+
 import { Button, Input } from '@nextui-org/react';
 
+import Toast from '@/component/toast/Toast';
 import { useTargetInfoContext } from '@/context/TargetInfoProvider';
 
 import { PageComponent } from './type';
 
 export const HostPage: PageComponent = ({ onNext }) => {
+  const [isError, setIsError] = useState(false);
   const { name, host, setHost } = useTargetInfoContext();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -14,14 +18,21 @@ export const HostPage: PageComponent = ({ onNext }) => {
 
   const handleClick = () => {
     if (host === '') {
-      return alert('내용을 입력해주세요.');
+      return setIsError(true);
     }
     onNext();
   };
 
   return (
     <>
-      <section className="flex flex-col gap-3 justify-center h-full w-full">
+      <section
+        className="flex flex-col gap-3 justify-center h-full w-full"
+        onKeyDown={e => {
+          if (e.key === 'Enter') {
+            handleClick();
+          }
+        }}
+      >
         <label id="name">
           나는 <span className="text-bold text-primary">{name}</span> 님에게 어떤 사람인가요?
         </label>
@@ -46,6 +57,7 @@ export const HostPage: PageComponent = ({ onNext }) => {
       >
         상장 만들기
       </Button>
+      <Toast isVisible={isError} message="내용을 입력해주세요." onClose={() => setIsError(false)} />
     </>
   );
 };
