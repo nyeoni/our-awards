@@ -86,6 +86,10 @@ export default function Home() {
   ];
 
   useEffect(() => {
+    router.prefetch('/award');
+  }, [router]);
+
+  useEffect(() => {
     if (session) {
       console.log(session);
     }

@@ -1,8 +1,27 @@
+import { on } from 'events';
+
 import { Button, Input } from '@nextui-org/react';
+
+import { useTargetInfoContext } from '@/context/TargetInfoProvider';
 
 import { PageComponent } from './type';
 
-export const NamePage: PageComponent = ({ onNext, onValueChange }) => {
+export const NamePage: PageComponent = ({ onNext }) => {
+  const { name, setName } = useTargetInfoContext();
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
+    setName(e.target.value);
+  };
+
+  const handleClick = () => {
+    if (name === '') {
+      return alert('이름을 입력해주세요.');
+    }
+    onNext();
+  };
+
   return (
     <>
       <section className="flex flex-col gap-3 justify-center w-full h-full">
@@ -11,16 +30,16 @@ export const NamePage: PageComponent = ({ onNext, onValueChange }) => {
         </label>
         <Input
           name="name"
-          onChange={onValueChange}
+          onChange={handleChange}
           minLength={1}
           maxLength={10}
-          color="primary"
+          color="success"
           variant="underlined"
           placeholder="이름"
           aria-labelledby="name"
         />
       </section>
-      <Button color="primary" radius="sm" fullWidth={true} onClick={onNext}>
+      <Button color="primary" radius="sm" fullWidth={true} onClick={handleClick}>
         확인
       </Button>
     </>

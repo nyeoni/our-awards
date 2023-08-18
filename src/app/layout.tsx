@@ -27,14 +27,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <NextAuthProvider>
           <ProtectedRoute>
             <UIProviders>
-              <main
-                className={`${uhbeeRegular.variable} ${uhbeeBold.variable} normal p-8 max-w-sm`}
-              >
-                {children}
-              </main>
+              <main className={`${uhbeeRegular.variable} ${uhbeeBold.variable}`}>{children}</main>
             </UIProviders>
           </ProtectedRoute>
         </NextAuthProvider>
+        <div id="portal" />
       </body>
     </html>
   );

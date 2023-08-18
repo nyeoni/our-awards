@@ -16,6 +16,10 @@ body, main {
   align-items: center;
 }
 
+main, #portal {
+  @apply normal p-8 max-w-sm;
+}
+
 .oa-background {
   @apply bg-gradient-to-r from-violet-800 to-indigo-800;
   /* @apply bg-gradient-to-r from-violet-600 to-indigo-600; */

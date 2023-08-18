@@ -26,7 +26,8 @@ export default async function Page(
   const captureRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
-  const { label, name, content, host, sender } = await getAward(params.id);
+  const { label, name, content, host, createdAt, sender } = await getAward(params.id);
+  const date = new Date(createdAt);
 
   const handleShare = () => {
     const shareObject = {
@@ -87,7 +88,9 @@ export default async function Page(
             <div className="text-sm self-end">이름: {name}</div>
           </div>
           <div className="text-xs text-center p-3">{content}</div>
-          <div className="text-sm">2023년 8월 13일</div>
+          <div className="text-sm">
+            {date.getFullYear()}년 {date.getMonth()}월 {date.getDate()}일
+          </div>
           <div className="text-sm">
             {host} {sender.name}
           </div>
@@ -107,7 +110,7 @@ export default async function Page(
           </Button>
         </section>
       </div>
-      <Toast message="상장이 저장되었습니다." />
+      <Toast isVisible={true} message="상장이 저장되었습니다." />
       <Lottie className="fixed top-10 left-0" animationData={sparklesAnimation} loop={false} />
     </div>
   );
