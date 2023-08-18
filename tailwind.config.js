@@ -20,8 +20,11 @@ module.exports = {
       themes: {
         normal: {
           colors: {
+            background: '#000000',
+            foreground: '#ffffff',
             primary: '#4944FF',
             secondary: '#facc15',
+            yellow: '#facc15',
           },
         },
       },

@@ -17,6 +17,8 @@ body, main {
 }
 
 .oa-background {
+  @apply bg-gradient-to-r from-violet-800 to-indigo-800;
+  /* @apply bg-gradient-to-r from-violet-600 to-indigo-600; */
   @apply bg-gradient-to-bl from-gray-700 via-gray-900 to-black;
 }
 
@@ -45,4 +47,8 @@ body, main {
   background-size: contain;
   background-repeat: no-repeat;
   background-image: url('/assets/result0.png');
+}
+
+.oa-textarea:hover {
+  @apply border-white;
 }

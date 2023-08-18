@@ -105,10 +105,10 @@ export default function Home() {
         ))}
       </section>
       <Button
-        className="font-medium text-black justify-self-end"
+        className="font-medium justify-self-end"
         fullWidth={true}
+        color="primary"
         radius="sm"
-        color="secondary"
         onClick={() => {
           router.push('/award');
         }}
