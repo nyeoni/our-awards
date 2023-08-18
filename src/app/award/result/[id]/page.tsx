@@ -73,7 +73,7 @@ export default async function Page(
 
   return (
     <div className="flex flex-col justify-between w-full h-full">
-      <Link className="flex items-center text-sm" href="/">
+      <Link className="flex items-center text-sm w-fit py-2" href="/">
         <BackIcon style={{ color: 'white' }} />
         <span className="ml-0.5 text-xs font-medium">메인페이지로</span>
       </Link>
@@ -89,7 +89,7 @@ export default async function Page(
           </div>
           <div className="text-xs text-center p-3">{content}</div>
           <div className="text-sm">
-            {date.getFullYear()}년 {date.getMonth()}월 {date.getDate()}일
+            {date.getFullYear()}년 {date.getMonth() + 1}월 {date.getDate()}일
           </div>
           <div className="text-sm">
             {host} {sender.name}
