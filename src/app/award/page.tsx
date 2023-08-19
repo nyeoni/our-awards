@@ -9,7 +9,7 @@ import { Progress } from '@nextui-org/react';
 import TargetInfoProvider, { useTargetInfoContext } from '@/context/TargetInfoProvider';
 
 import { ContentPage, HostPage, NamePage } from './_pages';
-import Loading from './result/loading';
+import Loading from './result/load';
 
 const pages = [{ Component: NamePage }, { Component: ContentPage }, { Component: HostPage }];
 

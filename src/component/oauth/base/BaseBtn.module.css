@@ -1,5 +1,5 @@
 .base {
-  @apply flex justify-center items-center h-12 px-5 w-full rounded shadow-md;
+  @apply flex justify-center items-center h-12 px-5 w-full rounded-xl shadow-lg font-medium;
 }
 
 .icon {
