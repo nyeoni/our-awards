@@ -1,0 +1,27 @@
+.base {
+  @apply flex justify-center items-center h-12 px-5 w-full rounded shadow-md;
+}
+
+.icon {
+  @apply flex;
+}
+
+.text {
+  @apply flex;
+}
+
+.align-center {
+  @apply justify-center gap-2;
+}
+
+.align-between {
+  @apply justify-between;
+
+  .icon {
+    @apply grow-0;
+  }
+
+  .text {
+    @apply grow;
+  }
+}
