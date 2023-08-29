@@ -3,7 +3,8 @@ import { Configuration, OpenAIApi } from 'openai';
 
 import { NextResponse } from 'next/server';
 
-import authOptions from '../auth/[...nextauth]/authOptions';
+import authOptions from '@/lib/authOptions';
+
 import prisma from '../prisma';
 
 const configuration = new Configuration({
