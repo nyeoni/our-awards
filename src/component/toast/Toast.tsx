@@ -6,12 +6,12 @@ import styles from './Toast.module.css';
 
 interface ToastProps {
   isVisible: boolean;
-  onClose?: () => void;
   message: string;
+  onClose?: () => void;
   duration?: number;
 }
 
-function Toast({ isVisible, onClose, message, duration = 3000 }: ToastProps) {
+function Toast({ isVisible, message, onClose, duration = 3000 }: ToastProps) {
   const [visible, setVisible] = useState(isVisible);
 
   useEffect(() => {

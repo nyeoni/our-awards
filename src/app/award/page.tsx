@@ -41,6 +41,7 @@ const AwardPage = () => {
         body: JSON.stringify(targetInfo),
       });
 
+      console.log('check', res);
       const { id } = await res.json();
 
       if (res.status !== 200) {

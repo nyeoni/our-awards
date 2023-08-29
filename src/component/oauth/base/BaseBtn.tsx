@@ -1,4 +1,5 @@
 import { ComponentProps } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 import Icon, { IconType } from '../icon/Icon';
 import styles from './BaseBtn.module.css';
@@ -19,15 +20,20 @@ export default function BaseBtn({
   symbolColor = '#ffffff',
   labelColor,
   align = 'center',
+  className = '',
+  style = {},
+  ...props
 }: BaseBtnProps) {
-  const style = {
+  const colorStyle = {
     backgroundColor: bgColor ?? '#000000',
     color: labelColor ?? '#ffffff',
+    ...style,
   };
   const alignClass = styles[`align-${align}`];
+  const classNames = twMerge(styles.base, alignClass, className);
 
   return (
-    <button className={`${styles.base} ${alignClass}`} style={style}>
+    <button className={classNames} style={colorStyle} {...props}>
       <Icon
         className={styles.icon}
         type={icon}

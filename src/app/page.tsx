@@ -47,6 +47,21 @@ function chunkArray(array: string | any[], size: number) {
   return chunked;
 }
 
+// async function getAwards() {
+//   const res = await fetch('/api/user/award', {
+//     method: 'GET',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//   });
+
+//   const data = await res.json();
+
+//   console.log(data);
+
+//   return data;
+// }
+
 export default function Home() {
   const { data: session } = useSession();
   const router = useRouter();

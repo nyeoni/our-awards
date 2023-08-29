@@ -1,6 +1,8 @@
+import { ComponentProps } from 'react';
+
 import BaseBtn from './base/BaseBtn';
 
-export default function GoogleBtn() {
+export default function GoogleBtn(props: ComponentProps<'button'>) {
   return (
     <BaseBtn
       className="font-Robotomedium"
@@ -9,6 +11,7 @@ export default function GoogleBtn() {
       symbolColor="white"
       labelColor="#7E7E7E"
       text="Google 로그인"
+      {...props}
     />
   );
 }

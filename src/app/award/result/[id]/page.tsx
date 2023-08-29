@@ -20,9 +20,7 @@ async function getAward(id: string) {
   return res.json();
 }
 
-export default async function Page(
-  { params }: { params: { id: string } } = { params: { id: '' } }
-) {
+export default async function Page({ params }: { params: { id: string } }) {
   const captureRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
