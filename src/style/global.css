@@ -17,7 +17,11 @@ body, main {
 }
 
 main, #portal {
-  @apply normal p-8 max-w-sm;
+  @apply normal max-w-sm;
+}
+
+main {
+  @apply p-8;
 }
 
 .oa-background {
