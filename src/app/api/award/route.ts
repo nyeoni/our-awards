@@ -79,10 +79,12 @@ export async function POST(req: Request, res: Response) {
   if (!message) {
     throw Error('message is null');
   }
-  const [label, newContent] = splitAtFirstNewline(message).map(str =>
+  let [label, newContent] = splitAtFirstNewline(message).map(str =>
     removeSurroundingQuotes(extractName(str).trim())
   );
-
+  if (label.at(-1) !== '상') {
+    label += '상';
+  }
   console.log('result', label, newContent);
 
   // db 에 저장
