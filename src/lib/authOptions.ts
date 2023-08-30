@@ -52,8 +52,8 @@ const authOptions: NextAuthOptions = {
     },
     async session({ session, token, user }) {
       // 필요한 경우 세션 객체에 추가 데이터를 추가하십시오.
-      console.log('session', session, token, user);
       session.user = token as any;
+      console.log('session', session, token, user);
       return session;
     },
   },

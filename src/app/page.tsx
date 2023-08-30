@@ -1,10 +1,10 @@
 'use client';
 
-import { signOut, useSession } from 'next-auth/react';
-import { useEffect } from 'react';
+import { useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
-import { redirect, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 import { Button } from '@nextui-org/button';
 
@@ -35,8 +35,8 @@ const Shelf = ({ awards }: { awards: Award[] }) => {
   );
 };
 
-function chunkArray(array: string | any[], size: number) {
-  const chunked = [];
+function chunkArray(array: any[], size: number) {
+  const chunked: any[][] = [];
   let index = 0;
 
   while (index < array.length) {
@@ -47,66 +47,37 @@ function chunkArray(array: string | any[], size: number) {
   return chunked;
 }
 
-// async function getAwards() {
-//   const res = await fetch('/api/user/award', {
-//     method: 'GET',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//   });
+async function getAwards(uid: string) {
+  const res = await fetch(`/api/user/award?uid=${uid}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 
-//   const data = await res.json();
+  const data = await res.json();
 
-//   console.log(data);
+  console.log(data);
 
-//   return data;
-// }
+  return data;
+}
 
-export default function Home() {
-  const { data: session } = useSession();
+export default async function Home() {
   const router = useRouter();
-  const awards: Award[] = [
-    {
-      id: 1,
-      name: '최고귀요미상',
-    },
-    {
-      id: 2,
-      name: '최고이쁘니상',
-    },
-    {
-      id: 3,
-      name: '슈퍼우먼상',
-    },
-    {
-      id: 4,
-      name: '까불이상',
-    },
-    {
-      id: 5,
-      name: '최고귀요미상',
-    },
-    {
-      id: 2,
-      name: '최고이쁘니상',
-    },
-    {
-      id: 3,
-      name: '슈퍼우먼상',
-    },
-    {
-      id: 4,
-      name: '까불이상',
-    },
-  ];
+  const { data: session } = useSession();
+  const [awards, setAwards] = useState<Award[]>([]);
 
   useEffect(() => {
     router.prefetch('/award');
-  }, [router]);
+  }, []);
 
   useEffect(() => {
+    const update = async () => {
+      const res = await getAwards(session?.user.id as string);
+      setAwards(res.awards);
+    };
     if (session) {
-      console.log(session);
+      update();
     }
   }, [session]);
 

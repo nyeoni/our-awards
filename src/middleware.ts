@@ -7,12 +7,12 @@ export default withAuth({
   // Minimum level is 0 (public) through 100 (admin)
   // If access is denied, the server will respond with HTTP error code 403 (Forbidden)
   // level: 10,
-  callbacks: {
-    authorized: ({ token }) => {
-      console.log('authorized', token);
-      return !!token;
-    },
-  },
+  // callbacks: {
+  //   authorized: ({ token }) => {
+  //     console.log('authorized', token);
+  //     return !!token;
+  //   },
+  // },
   pages: {
     signIn: '/auth',
   },
