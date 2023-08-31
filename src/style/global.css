@@ -16,12 +16,12 @@ body, main {
   align-items: center;
 }
 
-main, #portal {
-  @apply max-w-sm;
+.root-container {
+  @apply p-4 max-w-sm;
 }
 
 main {
-  @apply p-4;
+  @apply w-screen h-screen;
 }
 
 .oa-background {

@@ -12,8 +12,13 @@ import Toast from '@/component/toast/Toast';
 import BgAnimation from './bgAnimation';
 
 const OAUTH_ACCOUNT_NOT_LINKED = 'OAuthAccountNotLinked';
+const UNAUTHORIZED_ERROR = 'Unauthorized';
 const UNEXPECTED_ERROR = 'UnexpectedError';
-type AuthError = typeof OAUTH_ACCOUNT_NOT_LINKED | typeof UNEXPECTED_ERROR | null;
+type AuthError =
+  | typeof OAUTH_ACCOUNT_NOT_LINKED
+  | typeof UNAUTHORIZED_ERROR
+  | typeof UNEXPECTED_ERROR
+  | null;
 
 export default function Page() {
   const searchParams = useSearchParams();
@@ -33,6 +38,11 @@ export default function Page() {
       setError({
         type: OAUTH_ACCOUNT_NOT_LINKED,
         message: '이미 가입된 계정입니다.',
+      });
+    } else if (error === 'Unauthorized') {
+      setError({
+        type: UNAUTHORIZED_ERROR,
+        message: '로그인을 진행해주세요.',
       });
     } else {
       setError({

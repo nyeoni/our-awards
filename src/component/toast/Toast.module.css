@@ -1,7 +1,7 @@
 .base {
-  @apply flex w-full justify-center rounded shadow-md bg-black/70 text-sm py-2.5;
+  @apply flex w-full justify-center rounded shadow-md bg-black/70 text-sm p-2.5;
 }
 
 .container {
-  @apply fixed top-0 left-0 w-screen p-8;
+  @apply fixed top-0 left-0 w-screen flex justify-center p-4;
 }
