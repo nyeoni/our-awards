@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </main>
           </UIProviders>
           {/* </ProtectedRoute> */}
-          <div id="portal" />
+          <div id="portal" className="w-0 h-0" />
         </NextAuthProvider>
       </body>
     </html>
