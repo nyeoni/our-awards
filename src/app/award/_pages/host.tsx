@@ -39,6 +39,7 @@ export const HostPage: PageComponent = ({ onNext }) => {
         <span className="text-xs text-gray-200">상장 하단에 적힐 이름이에요! (예시: 너의베프)</span>
         <Input
           name="host"
+          autoFocus={true}
           onChange={handleChange}
           minLength={1}
           maxLength={10}

@@ -40,6 +40,7 @@ export const NamePage: PageComponent = ({ onNext }) => {
         </label>
         <Input
           name="name"
+          autoFocus={true}
           onChange={handleChange}
           minLength={1}
           maxLength={10}

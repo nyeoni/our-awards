@@ -57,6 +57,7 @@ export const ContentPage: PageComponent = ({ onNext }) => {
         </label>
         <Textarea
           name="content"
+          autoFocus={true}
           onChange={handleChange}
           maxRows={3}
           variant="bordered"
