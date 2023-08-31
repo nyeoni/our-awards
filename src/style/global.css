@@ -8,8 +8,8 @@ html {
 }
 
 body, main {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -21,7 +21,11 @@ body, main {
 }
 
 main {
-  @apply w-screen h-screen;
+  @apply h-full;
+}
+
+[data-overlay-container=true] {
+  @apply w-full h-full flex justify-center;
 }
 
 .oa-background {
