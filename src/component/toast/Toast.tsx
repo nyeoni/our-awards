@@ -11,6 +11,25 @@ interface ToastProps {
   duration?: number;
 }
 
+export const useToast = () => {
+  const [isVisible, setVisible] = useState(false);
+  const [message, setMessage] = useState('');
+  const [duration, setDuration] = useState(3000);
+
+  const open = (message: string, duration?: number) => {
+    setVisible(true);
+    setMessage(message);
+    if (duration) setDuration(duration);
+  };
+
+  const close = () => {
+    setVisible(false);
+    setMessage('');
+  };
+
+  return { isVisible, message, duration, open, close };
+};
+
 function Toast({ isVisible, message, onClose, duration = 3000 }: ToastProps) {
   const [visible, setVisible] = useState(isVisible);
 

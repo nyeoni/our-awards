@@ -27,31 +27,8 @@ export default async function Page({ params }: { params: { id: string } }) {
   const { label, name, content, host, createdAt, sender } = await getAward(params.id);
   const date = new Date(createdAt);
 
-  const handleShare = () => {
-    const shareObject = {
-      title: '너에게 상을 줄게',
-      text: `${name}님에게 ${label}상을 수여합니다!`,
-      url: window.location.href,
-    };
-
-    if (navigator.share) {
-      // Navigator를 지원하는 경우만 실행
-      navigator
-        .share(shareObject)
-        .then(() => {
-          // 정상 동작할 경우 실행
-          alert('공유하기 성공');
-        })
-        .catch(error => {
-          alert('에러가 발생했습니다.');
-        });
-    } else {
-      // navigator를 지원하지 않는 경우
-      console.log(pathname);
-      navigator.clipboard
-        .writeText(`${process.env.NEXT_PUBLIC_BASEURL}${pathname}`)
-        .then(() => alert('링크가 클립보드에 복사되었습니다.'));
-    }
+  const handleTaken = () => {
+    // 상을 수여받아서 내 것으로 저장하는 로직
   };
 
   const handleSaveImage = async () => {
@@ -93,8 +70,8 @@ export default async function Page({ params }: { params: { id: string } }) {
           </div>
         </section>
         <section className="flex flex-col gap-y-2 grow-0">
-          <Button color="primary" radius="sm" fullWidth={true} onClick={handleShare}>
-            공유하기
+          <Button color="primary" radius="sm" fullWidth={true} onClick={handleTaken}>
+            수여받기
           </Button>
           <Button
             color="primary"

@@ -82,6 +82,7 @@ export async function POST(req: Request, res: Response) {
   let [label, newContent] = splitAtFirstNewline(message).map(str =>
     removeSurroundingQuotes(extractName(str).trim())
   );
+
   if (label.at(-1) !== '상') {
     label += '상';
   }
