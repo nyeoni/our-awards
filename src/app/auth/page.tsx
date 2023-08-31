@@ -17,6 +17,7 @@ type AuthError = typeof OAUTH_ACCOUNT_NOT_LINKED | typeof UNEXPECTED_ERROR | nul
 
 export default function Page() {
   const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') ?? '/';
   const [error, setError] = useState<{ type: AuthError; message: string }>({
     type: null,
     message: '',
@@ -51,9 +52,9 @@ export default function Page() {
           </span>
         </section>
         <section className="flex flex-col w-full p-5 gap-2 justify-center">
-          <NaverBtn onClick={() => signIn('naver', { redirect: true, callbackUrl: '/' })} />
-          <KakaoBtn onClick={() => signIn('kakao', { redirect: true, callbackUrl: '/' })} />
-          <GoogleBtn onClick={() => signIn('google', { redirect: true, callbackUrl: '/' })} />
+          <NaverBtn onClick={() => signIn('naver', { redirect: true, callbackUrl })} />
+          <KakaoBtn onClick={() => signIn('kakao', { redirect: true, callbackUrl })} />
+          <GoogleBtn onClick={() => signIn('google', { redirect: true, callbackUrl })} />
         </section>
       </div>
       <BgAnimation />

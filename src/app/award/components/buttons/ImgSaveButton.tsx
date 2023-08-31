@@ -35,7 +35,7 @@ export const ImgSaveButton = ({
         variant="light"
         radius="sm"
         fullWidth={true}
-        onClick={handleSaveImage}
+        onPress={handleSaveImage}
       >
         사진으로 저장하기
       </Button>

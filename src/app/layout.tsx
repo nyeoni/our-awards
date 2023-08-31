@@ -22,7 +22,7 @@ const uhbeeBold = localFont({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark oa-background">
+    <html lang="en" className="normal oa-background">
       <body>
         <NextAuthProvider>
           {/* <ProtectedRoute> */}
@@ -30,8 +30,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main className={`${uhbeeRegular.variable} ${uhbeeBold.variable}`}>{children}</main>
           </UIProviders>
           {/* </ProtectedRoute> */}
+          <div id="portal" />
         </NextAuthProvider>
-        <div id="portal" />
       </body>
     </html>
   );

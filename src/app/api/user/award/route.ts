@@ -1,5 +1,6 @@
 import { getServerSession } from 'next-auth';
 
+import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
 
 import authOptions from '@/lib/authOptions';
@@ -50,4 +51,24 @@ export async function GET(request: Request) {
     total: data[0],
     awards: data[1],
   });
+}
+
+export async function POST(request: Request) {
+  const session = await getServerSession(authOptions);
+
+  if (!session) {
+    return NextResponse.redirect('/api/auth/signin');
+  }
+
+  const { awardId } = await request.json();
+
+  // 여기에 try catch 넣어야함?
+  const award = await prisma.award.update({
+    where: { id: awardId },
+    data: { receiverId: session.user.id },
+  });
+
+  revalidatePath('/api/user/award'); // 나중에 어떻게 잘 처리해보기
+
+  return NextResponse.json({ id: award.id });
 }

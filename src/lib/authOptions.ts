@@ -41,10 +41,6 @@ const authOptions: NextAuthOptions = {
       // 로그인이 유효하다면 true를 반환하십시오. 그렇지 않으면 false를 반환합니다.
       return true;
     },
-    async redirect({ url, baseUrl }) {
-      console.log('redirect', url, baseUrl);
-      return url.startsWith(baseUrl) ? url : baseUrl;
-    },
     async jwt({ token, user, account, profile }) {
       console.log('jwt', token, user, account, profile);
       // Persist the OAuth access_token and or the user id to the token right after signin

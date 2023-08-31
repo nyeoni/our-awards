@@ -34,7 +34,7 @@ export const ShareButton = ({ id }: { id: string }) => {
 
   return (
     <>
-      <Button color="primary" radius="sm" fullWidth={true} onClick={handleShare}>
+      <Button color="primary" radius="sm" fullWidth={true} onPress={handleShare}>
         공유하기
       </Button>
       <Toast isVisible={isVisible} message={message} onClose={close} />

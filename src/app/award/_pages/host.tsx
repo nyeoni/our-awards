@@ -53,7 +53,7 @@ export const HostPage: PageComponent = ({ onNext }) => {
         color="primary"
         radius="sm"
         fullWidth={true}
-        onClick={handleClick}
+        onPress={handleClick}
       >
         상장 만들기
       </Button>

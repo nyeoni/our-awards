@@ -1,11 +1,7 @@
-async function getAward(id: string) {
-  if (!id) return;
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/award/${id}`);
-  return res.json();
-}
+import { Award, User } from "@prisma/client";
 
-export default async function Award({ awardId }: { awardId: string }) {
-  const { label, name, content, host, createdAt, sender } = await getAward(awardId);
+export default async function Award({ award }: { award: Award & {sender: User}}) {
+  const { label, name, content, createdAt, host, sender } = award;
   const date = new Date(createdAt);
 
   return (

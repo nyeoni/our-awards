@@ -66,7 +66,7 @@ export const ContentPage: PageComponent = ({ onNext }) => {
           aria-labelledby="content"
         />
       </section>
-      <Button className="mt-5" color="primary" radius="sm" fullWidth={true} onClick={handleClick}>
+      <Button className="mt-5" color="primary" radius="sm" fullWidth={true} onPress={handleClick}>
         확인
       </Button>
       <Toast

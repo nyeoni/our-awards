@@ -19,6 +19,7 @@ module.exports = {
     nextui({
       themes: {
         normal: {
+          extend: 'dark',
           colors: {
             background: '#000000',
             foreground: '#ffffff',

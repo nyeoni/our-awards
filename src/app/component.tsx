@@ -44,7 +44,7 @@ export default function Page() {
         fullWidth={true}
         color="primary"
         radius="sm"
-        onClick={() => {
+        onPress={() => {
           router.push('/award');
         }}
       >
