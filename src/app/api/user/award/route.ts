@@ -1,6 +1,6 @@
 import { getServerSession } from 'next-auth';
 
-import { revalidatePath } from 'next/cache';
+import { revalidatePath, revalidateTag } from 'next/cache';
 import { NextResponse } from 'next/server';
 
 import authOptions from '@/lib/authOptions';
@@ -68,7 +68,7 @@ export async function POST(request: Request) {
     data: { receiverId: session.user.id },
   });
 
-  revalidatePath('/api/user/award'); // 나중에 어떻게 잘 처리해보기
+  revalidateTag('award');
 
   return NextResponse.json({ id: award.id });
 }

@@ -7,7 +7,7 @@ export async function GET(request: Request, { params }: { params: { id: string }
 
   const award = await prisma.award.findUnique({
     where: { id },
-    include: { sender: true },
+    include: { sender: true, receiver: true },
   });
 
   if (!award) {

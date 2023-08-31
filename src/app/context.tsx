@@ -22,6 +22,7 @@ export const UserAwardsProvider = ({ children }: { children: React.ReactNode }) 
   useEffect(() => {
     const update = async () => {
       const res = await fetch(`${USER_AWARDS_API}?page=${currentPage}`, {
+        next: { tags: ['award'] },
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

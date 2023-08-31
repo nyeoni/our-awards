@@ -9,7 +9,7 @@ export const ShareButton = ({ id }: { id: string }) => {
     const shareObject = {
       title: '우리들의 시상식',
       text: `당신에게 상을 수여합니다!`, // 이거 바꿔야함
-      url: `${process.env.NEXT_PUBLIC_BASEURL}/share/${id}`,
+      url: `${process.env.NEXT_PUBLIC_BASEURL}/result/${id}`,
     };
 
     if (navigator.share) {
@@ -25,9 +25,9 @@ export const ShareButton = ({ id }: { id: string }) => {
         });
     } else {
       // navigator를 지원하지 않는 경우
-      console.log(`${process.env.NEXT_PUBLIC_BASEURL}/share/${id}`);
+      console.log(`${process.env.NEXT_PUBLIC_BASEURL}/result/${id}`);
       navigator.clipboard
-        .writeText(`${process.env.NEXT_PUBLIC_BASEURL}/share/${id}`)
+        .writeText(`${process.env.NEXT_PUBLIC_BASEURL}/result/${id}`)
         .then(() => open('링크가 클립보드에 복사되었습니다.'));
     }
   };
