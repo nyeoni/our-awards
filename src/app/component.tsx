@@ -79,6 +79,7 @@ export const SwipableAwards = () => {
 };
 
 export const Awards = ({ pageNum }: { pageNum: number }) => {
+  const router = useRouter();
   const { awards: allAwards } = useUserAwardsContext();
   const [awards, setAwards] = useState<Award[][]>();
 
@@ -92,7 +93,10 @@ export const Awards = ({ pageNum }: { pageNum: number }) => {
   return (
     <>
       {[1, 2, 3].map((_, i) => (
-        <div className="flex items-end justify-center gap-0 w-full h-20 relative my-5">
+        <div
+          key={Math.random()}
+          className="flex items-end justify-center gap-0 w-full h-20 relative my-5"
+        >
           <div className="oa-shelf oa-shelf-left grow-0" />
           <div className="oa-shelf oa-shelf-middle grow" />
           <div className="oa-shelf oa-shelf-right grow-0" />
@@ -104,7 +108,13 @@ export const Awards = ({ pageNum }: { pageNum: number }) => {
                   <label className="block font-uhbee-regular text-xs text-neutral-100">
                     {award.label}
                   </label>
-                  <Image src="/assets/award0.png" alt="award" width={72} height={72} />
+                  <Image
+                    src="/assets/award0.png"
+                    alt="award"
+                    width={72}
+                    height={72}
+                    onClick={() => router.push(`/award/result/${award.id}`)}
+                  />
                 </li>
               ))}
           </ul>
