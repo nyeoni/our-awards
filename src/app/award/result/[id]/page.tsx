@@ -36,13 +36,14 @@ export default async function Page({ params }: { params: { id: string } }) {
   // 이미 수여받아져 있으면 -> 다른 멋있는 뷰를 보여주고,
   // 수여받지 않았으면 -> 수여받을 수 있는 버튼을 보여준다. -> 버튼을 클릭하면 -> 모달이 뜨고, 정말 그 사람이 맞는지 확인하는 로직을 추가한다.
   const captureRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
   const { data: session } = useSession();
   const user = session?.user;
   const award = await getAward(params.id);
 
   return (
     <div className="flex flex-col justify-between w-full h-full">
-      <NavigateButton path="/" />
+      <NavigateButton label='메인페이지로' onClick={() => router.push('/')} />
       <div ref={captureRef}>
         <Award award={award} />
       </div>

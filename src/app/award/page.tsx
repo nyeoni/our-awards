@@ -9,6 +9,7 @@ import { Progress } from '@nextui-org/react';
 import TargetInfoProvider, { useTargetInfoContext } from '@/context/TargetInfoProvider';
 
 import { ContentPage, HostPage, NamePage } from './_pages';
+import { NavigateButton } from './components';
 import Loading from './result/load';
 
 const pages = [{ Component: NamePage }, { Component: ContentPage }, { Component: HostPage }];
@@ -76,6 +77,13 @@ const AwardPage = () => {
         size="sm"
         value={((step + 1) / pages.length) * 100}
       />
+      {step > 0 && (
+        <NavigateButton
+          className="self-start"
+          label="이전으로"
+          onClick={() => setStep(prev => prev - 1)}
+        />
+      )}
       <CurrentPageComponent onNext={handleNext} />
     </>
   );
