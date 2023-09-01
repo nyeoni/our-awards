@@ -1,8 +1,5 @@
 import { ComponentProps } from 'react';
 
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-
 import BackIcon from '/public/svgs/back.svg';
 
 export function NavigateButton({
@@ -15,7 +12,7 @@ export function NavigateButton({
   return (
     <button className={classes} {...props}>
       <BackIcon style={{ color: 'white' }} />
-      <span className="ml-0.5 text-xs font-medium">{label}</span>
+      <span className="ml-1 text-xs font-medium">{label}</span>
     </button>
   );
 }
