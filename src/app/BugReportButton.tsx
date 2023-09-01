@@ -16,12 +16,13 @@ export default function BugReportButton() {
   }, []);
 
   return (
-    <div className="fixed bottom-0 right-0 p-4 z-50">
+    <div className="fixed bottom-24 right-5 z-50">
       <Popover
         isOpen={isOpen}
-        // onOpenChange={open => setIsOpen(open)}
-        content="서비스에서 문제되는 부분을 알려주세요! 여러분들의 의견은 저희 서비스에 너무 큰 도움이 됩니다. 🙏"
-        placement="right"
+        placement="left-end"
+        classNames={{
+          base: 'max-w-[280px]',
+        }}
       >
         <PopoverTrigger>
           <Button
@@ -30,15 +31,20 @@ export default function BugReportButton() {
             className="p-1.5 shadow-sm"
             isIconOnly
             aria-label="Report Bugs"
-            onPress={() => alert('hi')}
+            onPress={() =>
+              (location.href =
+                'https://docs.google.com/forms/d/124sj6w2jaj7HiTH8D77xMMgF9MDL3-Bo43KlbpJ9LYI/edit?pli=1')
+            }
           >
             <img src={megaphoneImg.src} alt="Report Bugs" />
           </Button>
         </PopoverTrigger>
         <PopoverContent>
           <div className="px-1 py-2">
-            <div className="text-small font-bold">Popover Content</div>
-            <div className="text-tiny">This is the popover content</div>
+            <div className="text-small font-bold">버그 & 기능 제안 양식 업데이트! 🌟</div>
+            <p className="text-tiny">
+              버그를 발견하셨거나 서비스 개선에 대한 멋진 아이디어가 있으시다면 클릭해주세요!
+            </p>
           </div>
         </PopoverContent>
       </Popover>
