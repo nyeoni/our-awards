@@ -17,7 +17,7 @@ body, main {
 }
 
 .root-container {
-  @apply p-4 max-w-sm;
+  @apply p-5 max-w-sm py-9;
 }
 
 main {
