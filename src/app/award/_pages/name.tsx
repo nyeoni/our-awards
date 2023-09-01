@@ -49,10 +49,17 @@ export const NamePage: PageComponent = ({ onNext }) => {
           placeholder="이름"
           aria-labelledby="name"
         />
+        <Button
+          size="lg"
+          color="primary"
+          className="mt-5"
+          radius="sm"
+          fullWidth={true}
+          onPress={handleClick}
+        >
+          확인
+        </Button>
       </section>
-      <Button size="lg" color="primary" radius="sm" fullWidth={true} onPress={handleClick}>
-        확인
-      </Button>
       <Toast isVisible={isError} message="이름을 입력해주세요." onClose={() => setIsError(false)} />
     </>
   );

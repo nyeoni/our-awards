@@ -66,17 +66,17 @@ export const ContentPage: PageComponent = ({ onNext }) => {
           placeholder="칭찬해주고 싶은 부분을 적어주세요."
           aria-labelledby="content"
         />
+        <Button
+          size="lg"
+          className="mt-5"
+          color="primary"
+          radius="sm"
+          fullWidth={true}
+          onPress={handleClick}
+        >
+          확인
+        </Button>
       </section>
-      <Button
-        size="lg"
-        className="mt-5"
-        color="primary"
-        radius="sm"
-        fullWidth={true}
-        onPress={handleClick}
-      >
-        확인
-      </Button>
       <Toast
         isVisible={error.isError}
         message={error.message}

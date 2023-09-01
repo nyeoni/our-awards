@@ -47,18 +47,18 @@ export const HostPage: PageComponent = ({ onNext }) => {
           variant="underlined"
           aria-labelledby="name"
         />
+        <Button
+          size="lg"
+          className="mt-5"
+          variant="shadow"
+          color="primary"
+          radius="sm"
+          fullWidth={true}
+          onPress={handleClick}
+        >
+          상장 만들기
+        </Button>
       </section>
-      <Button
-        size="lg"
-        className="mt-5"
-        variant="shadow"
-        color="primary"
-        radius="sm"
-        fullWidth={true}
-        onPress={handleClick}
-      >
-        상장 만들기
-      </Button>
       <Toast isVisible={isError} message="내용을 입력해주세요." onClose={() => setIsError(false)} />
     </>
   );
