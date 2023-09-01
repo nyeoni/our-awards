@@ -106,7 +106,7 @@ export const Awards = ({ pageNum }: { pageNum: number }) => {
               awards[i] &&
               awards[i].map(award => (
                 <li key={award.id} className="flex flex-col items-center gap-y-1">
-                  <label className="block font-uhbee-regular text-xs text-neutral-100">
+                  <label className="block font-uhbee-regular text-xs text-neutral-100 w-[72px] truncate text-center">
                     {award.label}
                   </label>
                   <Image
