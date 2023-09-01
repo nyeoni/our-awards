@@ -98,7 +98,7 @@ const TakenAwardButton = ({ id }: { id: string }) => {
         <ShareButton id={id} />
       ) : (
         <>
-          <Button color="primary" radius="sm" fullWidth={true} onPress={onOpen}>
+          <Button size="lg" color="primary" radius="sm" fullWidth={true} onPress={onOpen}>
             수여받기
           </Button>
 

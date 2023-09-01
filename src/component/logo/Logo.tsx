@@ -1,7 +1,5 @@
 'use client';
 
-import { ComponentProps, ComponentPropsWithoutRef } from 'react';
-
 import Image from 'next/image';
 
 import logoImage from '@/public/assets/logo.png';

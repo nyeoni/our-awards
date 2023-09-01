@@ -49,6 +49,7 @@ export const HostPage: PageComponent = ({ onNext }) => {
         />
       </section>
       <Button
+        size="lg"
         className="mt-5"
         variant="shadow"
         color="primary"

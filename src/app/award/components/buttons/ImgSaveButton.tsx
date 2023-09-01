@@ -31,6 +31,7 @@ export const ImgSaveButton = ({
   return (
     <>
       <Button
+        size="lg"
         color="primary"
         variant="light"
         radius="sm"

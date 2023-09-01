@@ -3,6 +3,8 @@ import localFont from 'next/font/local';
 import { NextAuthProvider, ProtectedRoute, UIProviders } from '@/context';
 import '@/style/global.css';
 
+import BugReportButton from './BugReportButton';
+
 export const metadata = {
   title: 'Our Awards',
   description: '상을 주고받아요',
@@ -29,6 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main className={`root-container ${uhbeeRegular.variable} ${uhbeeBold.variable}`}>
               {children}
             </main>
+            <BugReportButton />
           </UIProviders>
           <div id="portal" className="w-0 h-0" />
         </NextAuthProvider>

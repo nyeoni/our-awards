@@ -43,6 +43,7 @@ export default function Page() {
         className="font-medium grow-0"
         fullWidth={true}
         color="primary"
+        size="lg"
         radius="sm"
         onPress={() => {
           router.push('/award');
