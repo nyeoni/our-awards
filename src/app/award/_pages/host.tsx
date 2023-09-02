@@ -5,7 +5,7 @@ import { Button, Input } from '@nextui-org/react';
 import Toast from '@/component/toast/Toast';
 import { useTargetInfoContext } from '@/context/TargetInfoProvider';
 
-import { PageComponent } from './type';
+import type { PageComponent } from './type';
 
 export const HostPage: PageComponent = ({ onNext }) => {
   const [isError, setIsError] = useState(false);

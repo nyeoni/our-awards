@@ -1,7 +1,6 @@
+import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth/next';
 import { Configuration, OpenAIApi } from 'openai';
-
-import { NextResponse } from 'next/server';
 
 import authOptions from '@/lib/authOptions';
 
@@ -39,7 +38,7 @@ function removeSurroundingQuotes(str: string) {
   return str; // 따옴표로 둘러싸여 있지 않은 경우 원래 문자열 반환
 }
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
   const session = await getServerSession(authOptions);
 
   if (!session) {

@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
-import { Award } from '@prisma/client';
+import type { Award } from '@prisma/client';
 
 const USER_AWARDS_API = '/api/user/award';
 
@@ -23,6 +23,7 @@ export const UserAwardsProvider = ({ children }: { children: React.ReactNode }) 
     const update = async () => {
       const res = await fetch(`${USER_AWARDS_API}?page=${currentPage}`, {
         next: { tags: ['award'] },
+        cache: 'force-cache',
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

@@ -1,8 +1,8 @@
-import { SVGProps } from 'react';
+import type { SVGProps } from 'react';
 
-import { default as Google } from '../icon/google.svg';
 import Kakao from './kakao.svg';
 import Naver from './naver.svg';
+import { default as Google } from '../icon/google.svg';
 
 export type IconType = 'naver' | 'kakao' | 'google';
 

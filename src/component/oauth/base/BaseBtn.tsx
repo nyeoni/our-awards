@@ -1,8 +1,9 @@
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import Icon, { IconType } from '../icon/Icon';
 import styles from './BaseBtn.module.css';
+import Icon from '../icon/Icon';
+import type { IconType } from '../icon/Icon';
 
 interface BaseBtnProps extends ComponentProps<'button'> {
   icon: IconType;

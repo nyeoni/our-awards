@@ -1,8 +1,8 @@
-import { AnimatePresence, motion, useAnimation } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
-import { Portal } from '../portal';
 import styles from './Toast.module.css';
+import { Portal } from '../portal';
 
 interface ToastProps {
   isVisible: boolean;

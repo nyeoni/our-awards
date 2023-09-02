@@ -1,19 +1,18 @@
 'use client';
 
-// Import Swiper styles
-import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
-import 'swiper/css';
-import 'swiper/css/pagination';
-// Import Swiper React components
-import { Pagination } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
+import { useSession } from 'next-auth/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
 import { Button } from '@nextui-org/button';
-import { Award } from '@prisma/client';
+import type { Award } from '@prisma/client';
 
 import chunkArray from '@/lib/chunkArray';
 
@@ -26,7 +25,7 @@ export default function Page() {
 
   useEffect(() => {
     router.prefetch('/award');
-  }, []);
+  }, [router]);
 
   return (
     <>

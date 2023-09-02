@@ -2,9 +2,8 @@
 
 import { useState } from 'react';
 
-import { useRouter } from 'next/navigation';
-
 import { Progress } from '@nextui-org/react';
+import { useRouter } from 'next/navigation';
 
 import TargetInfoProvider, { useTargetInfoContext } from '@/context/TargetInfoProvider';
 

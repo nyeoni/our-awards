@@ -1,9 +1,6 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import { useRef, useState } from 'react';
-
-import { useRouter } from 'next/navigation';
 
 import {
   Button,
@@ -14,6 +11,9 @@ import {
   ModalHeader,
   useDisclosure,
 } from '@nextui-org/react';
+import { useRouter } from 'next/navigation';
+
+import { useSession } from 'next-auth/react';
 
 import Toast, { useToast } from '@/component/toast/Toast';
 
@@ -77,7 +77,7 @@ const TakenAwardButton = ({ id }: { id: string }) => {
     }
     // auth 로그인이 되어있는 유저일때 - 수여받기 api 호출
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/user/award`, {
+      await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/user/award`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -9,32 +9,6 @@
   "plugins": ["@typescript-eslint", "no-null"],
   "rules": {
     "@typescript-eslint/no-unused-vars": "error",
-    "import/order": [
-      "error",
-      {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          ["parent", "sibling"],
-          "object",
-          "type",
-          "index"
-        ],
-        "pathGroups": [
-          {
-            "pattern": "react",
-            "group": "external",
-            "position": "before"
-          }
-        ],
-        "pathGroupsExcludedImportTypes": ["react", "next"],
-        "alphabetize": {
-          "order": "asc",
-          "caseInsensitive": true
-        }
-      }
-    ],
     "sort-imports": [
       "error",
       {
@@ -46,7 +20,7 @@
     ],
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/consistent-type-imports": "error",
-    "no-null/no-null": 2,
+    "no-null/no-null": "off",
     "curly": ["error", "multi-line", "consistent"],
     "nonblock-statement-body-position": ["error", "beside"]
   }

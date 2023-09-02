@@ -1,6 +1,6 @@
-import { ComponentProps } from 'react';
+import type { ComponentProps } from 'react';
 
-import BackIcon from '/public/svgs/back.svg';
+import BackIcon from '@/public/svgs/back.svg';
 
 export function NavigateButton({
   label,
@@ -12,7 +12,7 @@ export function NavigateButton({
   return (
     <button className={classes} {...props}>
       <BackIcon style={{ color: 'white' }} />
-      <span className="ml-1 text-xs font-medium">{label}</span>
+      <span className="ml-2 text-sm font-medium">{label}</span>
     </button>
   );
 }

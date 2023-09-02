@@ -1,7 +1,6 @@
-import { getServerSession } from 'next-auth';
-
-import { revalidatePath, revalidateTag } from 'next/cache';
+import { revalidateTag } from 'next/cache';
 import { NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
 
 import authOptions from '@/lib/authOptions';
 
@@ -15,24 +14,7 @@ export async function GET(request: Request) {
 
   // 세션 검사
   if (!session) {
-    // return NextResponse.redirect('/api/auth/signin');
-    session = {
-      user: {
-        name: '김나연',
-        email: 'skdusdl8804@gmail.com',
-        picture:
-          'https://lh3.googleusercontent.com/a/AAcHTtfvtu1rG54rsHg00IbKbAYBZuhCUFsYDwQG5C9oQF8b_zP6=s96-c',
-        sub: 'cll56rclr00004lsot1rhv6qp',
-        id: 'cll56rclr00004lsot1rhv6qp',
-        emailVerified: null,
-        image:
-          'https://lh3.googleusercontent.com/a/AAcHTtfvtu1rG54rsHg00IbKbAYBZuhCUFsYDwQG5C9oQF8b_zP6=s96-c',
-        iat: 1693389537,
-        exp: 1695981537,
-        jti: '5ca798ea-46f1-4a05-98e1-4124e5912d48',
-      },
-      expires: '2023-09-29T09:58:58.491Z',
-    };
+    return NextResponse.redirect('/api/auth/signin');
   }
 
   const { user } = session;

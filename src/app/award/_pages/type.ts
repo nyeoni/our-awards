@@ -1,5 +1,3 @@
-import { ChangeEvent } from 'react';
-
 export type PageProps = {
   onNext: () => void;
 };

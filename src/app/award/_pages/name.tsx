@@ -1,4 +1,3 @@
-import { on } from 'events';
 import { useState } from 'react';
 
 import { Button, Input } from '@nextui-org/react';
@@ -6,7 +5,7 @@ import { Button, Input } from '@nextui-org/react';
 import Toast from '@/component/toast/Toast';
 import { useTargetInfoContext } from '@/context/TargetInfoProvider';
 
-import { PageComponent } from './type';
+import type { PageComponent } from './type';
 
 export const NamePage: PageComponent = ({ onNext }) => {
   const [isError, setIsError] = useState(false);

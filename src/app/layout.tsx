@@ -1,6 +1,6 @@
 import localFont from 'next/font/local';
 
-import { NextAuthProvider, ProtectedRoute, UIProviders } from '@/context';
+import { NextAuthProvider, UIProviders } from '@/context';
 import '@/style/global.css';
 
 import BugReportButton from './BugReportButton';

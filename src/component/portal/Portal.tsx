@@ -1,6 +1,7 @@
 'use client';
 
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import type { ReactNode } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 interface PortalProps {
@@ -8,7 +9,7 @@ interface PortalProps {
   children: ReactNode;
 }
 
-export const Portal = ({ children, isOverlay = false }: PortalProps) => {
+export const Portal = ({ children }: PortalProps) => {
   const ref = useRef<Element | null>(null);
   const [mounted, setMounted] = useState(false);
 

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { Button, Popover, PopoverContent, PopoverTrigger, Tooltip } from '@nextui-org/react';
+import { Button, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react';
 
 import megaphoneImg from '@/public/assets/megaphone.png';
 

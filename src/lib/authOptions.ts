@@ -1,12 +1,11 @@
-import { NextAuthOptions } from 'next-auth';
-import type { Adapter } from 'next-auth/adapters';
+import { PrismaAdapter } from '@auth/prisma-adapter';
 import GoogleProvider from 'next-auth/providers/google';
 import KakaoProvider from 'next-auth/providers/kakao';
 import NaverProvider from 'next-auth/providers/naver';
 
-import { PrismaAdapter } from '@auth/prisma-adapter';
-
 import prisma from '@/api/prisma';
+import type { NextAuthOptions } from 'next-auth';
+import type { Adapter } from 'next-auth/adapters';
 
 const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,

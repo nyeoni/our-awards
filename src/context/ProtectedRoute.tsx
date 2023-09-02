@@ -1,14 +1,14 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 
+import { Spinner } from '@nextui-org/react';
 import { redirect } from 'next/navigation';
 
-import { Spinner } from '@nextui-org/react';
+import { useSession } from 'next-auth/react';
 
 export default function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const { data: session, status } = useSession();
+  const { status } = useSession();
 
   useEffect(() => {
     if (status === 'unauthenticated') {

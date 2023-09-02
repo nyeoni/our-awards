@@ -1,7 +1,7 @@
-import { toPng } from 'html-to-image';
-import { RefObject } from 'react';
+import type { RefObject } from 'react';
 
 import { Button } from '@nextui-org/react';
+import { toPng } from 'html-to-image';
 
 import Toast, { useToast } from '@/component/toast/Toast';
 
@@ -12,7 +12,7 @@ export const ImgSaveButton = ({
   captureRef: RefObject<HTMLDivElement>;
   imgName?: string;
 }) => {
-  const { isVisible, message, duration, open, close } = useToast();
+  const { isVisible, message, close } = useToast();
 
   const handleSaveImage = async () => {
     if (!captureRef.current) return;
@@ -20,7 +20,7 @@ export const ImgSaveButton = ({
     toPng(captureRef.current, { cacheBust: true })
       .then(dataUrl => {
         const link = document.createElement('a');
-        link.download = 'my-image-name.png';
+        link.download = imgName ?? '내상장.png';
         link.href = dataUrl;
         link.click();
       })

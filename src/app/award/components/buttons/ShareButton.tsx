@@ -22,6 +22,7 @@ export const ShareButton = ({ id }: { id: string }) => {
         })
         .catch(error => {
           open('에러가 발생했습니다.');
+          throw error;
         });
     } else {
       // navigator를 지원하지 않는 경우
