@@ -13,6 +13,8 @@
     "@auth/prisma-adapter": "^1.0.1",
     "@nextui-org/react": "^2.0.15",
     "@prisma/client": "^5.1.1",
+    "@sentry/nextjs": "^7.66.0",
+    "@sentry/react": "^7.66.0",
     "@types/node": "20.3.1",
     "@types/react": "18.2.13",
     "@types/react-dom": "18.2.6",
