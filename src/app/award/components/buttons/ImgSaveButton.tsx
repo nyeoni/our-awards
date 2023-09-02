@@ -1,4 +1,4 @@
-import html2canvas from 'html2canvas';
+import { toPng } from 'html-to-image';
 import { RefObject } from 'react';
 
 import { Button } from '@nextui-org/react';
@@ -16,16 +16,17 @@ export const ImgSaveButton = ({
 
   const handleSaveImage = async () => {
     if (!captureRef.current) return;
-    const canvas = await html2canvas(captureRef.current);
-    const imgData = canvas.toDataURL();
 
-    // Create a link to download the image
-    const link = document.createElement('a');
-    link.href = imgData;
-    link.download = imgName ?? '내상장' + '.png';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    toPng(captureRef.current, { cacheBust: true })
+      .then(dataUrl => {
+        const link = document.createElement('a');
+        link.download = 'my-image-name.png';
+        link.href = dataUrl;
+        link.click();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (
