@@ -4,6 +4,7 @@ import { NextAuthProvider, ProtectedRoute, UIProviders } from '@/context';
 import '@/style/global.css';
 
 import BugReportButton from './BugReportButton';
+import GoogleAnalytics from './GoogleAnalytics';
 
 export const metadata = {
   title: 'Our Awards',
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="normal oa-background">
       <body>
+        <GoogleAnalytics />
         <NextAuthProvider>
           <UIProviders>
             <main className={`root-container ${uhbeeRegular.variable} ${uhbeeBold.variable}`}>
