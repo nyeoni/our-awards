@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Button, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react';
 
 import megaphoneImg from '@/public/assets/megaphone.png';
+import Image from 'next/image';
 
 export default function BugReportButton() {
   const [isOpen, setIsOpen] = useState(true);
@@ -36,7 +37,7 @@ export default function BugReportButton() {
                 'https://docs.google.com/forms/d/124sj6w2jaj7HiTH8D77xMMgF9MDL3-Bo43KlbpJ9LYI/edit?pli=1')
             }
           >
-            <img src={megaphoneImg.src} alt="Report Bugs" />
+            <Image src={megaphoneImg.src} alt="Report Bugs" />
           </Button>
         </PopoverTrigger>
         <PopoverContent>
