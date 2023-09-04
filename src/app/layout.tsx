@@ -9,6 +9,9 @@ import GoogleAnalytics from './GoogleAnalytics';
 export const metadata = {
   title: 'Our Awards',
   description: '상을 주고받아요',
+  httpEquiv: {
+    'Content-Security-Policy': "default-src 'self'; connect-src vitals.vercel-insights.com",
+  },
 };
 
 const uhbeeRegular = localFont({
