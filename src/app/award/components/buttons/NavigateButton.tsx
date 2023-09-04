@@ -12,7 +12,7 @@ export function NavigateButton({
   return (
     <button className={classes} {...props}>
       <BackIcon style={{ color: 'white' }} />
-      <span className="ml-2 text-sm font-medium">{label}</span>
+      <span className="ml-1.5 text-sm font-medium">{label}</span>
     </button>
   );
 }

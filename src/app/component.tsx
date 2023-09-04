@@ -88,7 +88,7 @@ export const Awards = ({ pageNum }: { pageNum: number }) => {
       const awards = chunkArray(allAwards[pageNum], 4);
       setAwards(awards);
     }
-  }, [allAwards]);
+  }, [allAwards, pageNum]);
 
   return (
     <>

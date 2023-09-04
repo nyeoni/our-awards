@@ -34,6 +34,7 @@ export const UserAwardsProvider = ({ children }: { children: React.ReactNode }) 
       setAwards({ ...awards, [currentPage]: data.awards });
     };
     update();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage]);
 
   return (

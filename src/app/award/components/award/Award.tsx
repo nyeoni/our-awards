@@ -1,6 +1,6 @@
 import type { Award, User } from '@prisma/client';
 
-export default async function Award({ award }: { award: Award & { sender: User } }) {
+export default function Award({ award }: { award: Award & { sender: User } }) {
   const { label, name, content, createdAt, host, sender } = award;
   const date = new Date(createdAt);
 

@@ -50,7 +50,7 @@ export default function Page() {
         message: '예상치 못한 오류가 발생했습니다.',
       });
     }
-  }, []);
+  }, [searchParams]);
 
   return (
     <>

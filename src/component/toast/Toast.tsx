@@ -40,7 +40,7 @@ function Toast({ isVisible, message, onClose, duration = 3000 }: ToastProps) {
       setVisible(false);
       if (onClose) onClose();
     }, duration);
-  }, [isVisible]);
+  }, [isVisible, duration, onClose]);
 
   return (
     <AnimatePresence>
