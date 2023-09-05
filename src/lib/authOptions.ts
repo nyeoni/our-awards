@@ -42,6 +42,7 @@ const authOptions: NextAuthOptions = {
     async jwt({ token }) {
       // profile 같은 경우 social 로그인 한 직후에만 있음
       console.log('jwt');
+      token.id = token.sub;
       // Persist the OAuth access_token and or the user id to the token right after signin
       return { ...token };
     },
