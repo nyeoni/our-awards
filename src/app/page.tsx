@@ -10,18 +10,18 @@ import AwardsSlide from './AwardsSlide';
 
 export default async function Page() {
   const { data: session } = useSession();
-  const { total, awards } = await getAward();
+  const data = await getAward();
 
   return (
     <UserAwardsProvider>
       <section className="flex flex-col gap-1 w-full mb-10 grow-0">
         <div className="font-uhbee-regular text-2xl">{session?.user.name} 님은</div>
         <div className="font-uhbee-regular text-2xl">
-          총 <span className="text-secondary">{total}</span> 개의 상을 받았습니다.
+          총 <span className="text-secondary">{data?.total}</span> 개의 상을 받았습니다.
         </div>
       </section>
       <Suspense fallback={<div>Loading...</div>}>
-        <AwardsSlide initAwards={awards} total={total} />
+        <AwardsSlide initAwards={data?.awards} total={data?.total} />
       </Suspense>
       <Button
         as={Link}
