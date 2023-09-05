@@ -17,7 +17,7 @@ export default function BugReportButton() {
   }, []);
 
   return (
-    <div className="fixed bottom-24 right-5 z-50">
+    <div className="fixed bottom-24 ml-72 z-50">
       <Popover
         isOpen={isOpen}
         placement="left-end"
@@ -27,9 +27,9 @@ export default function BugReportButton() {
       >
         <PopoverTrigger>
           <Button
-            size="md"
+            size="lg"
             radius="lg"
-            className="p-1.5 shadow-sm"
+            className="p-2 shadow-sm"
             isIconOnly
             aria-label="Report Bugs"
             onPress={() =>
