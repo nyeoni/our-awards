@@ -13,7 +13,7 @@ export default function BugReportButton() {
   useEffect(() => {
     setTimeout(() => {
       setIsOpen(false);
-    }, 5000);
+    }, 3000);
   }, []);
 
   return (
@@ -37,7 +37,7 @@ export default function BugReportButton() {
                 'https://docs.google.com/forms/d/124sj6w2jaj7HiTH8D77xMMgF9MDL3-Bo43KlbpJ9LYI/edit?pli=1')
             }
           >
-            <Image src={megaphoneImg.src} alt="Report Bugs" />
+            <Image src={megaphoneImg.src} height={32} width={32} alt="Report Bugs" />
           </Button>
         </PopoverTrigger>
         <PopoverContent>
