@@ -1,30 +1,32 @@
 import { revalidateTag } from 'next/cache';
+import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
-
 import authOptions from '@/lib/authOptions';
 
 import prisma from '../../prisma';
+import { getToken } from 'next-auth/jwt';
 
-export async function GET(request: Request) {
-  let session = await getServerSession(authOptions);
+export async function GET(request: NextRequest) {
+  const token = await getToken({ req: request, secret: authOptions.secret });
+
   const { searchParams } = new URL(request.url);
   const page = Number(searchParams.get('page') ?? '1');
   const size = Number(searchParams.get('size') ?? '12');
 
   // 세션 검사
-  if (!session) {
-    return NextResponse.redirect('/api/auth/signin');
+  if (!token) {
+    return NextResponse.json({ error: 'Token is missing' }, { status: 401 });
+    // return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASEURL}/api/auth/signin`);
   }
 
-  const { user } = session;
+  console.log('GET /user/award', token);
 
   const data = await prisma.$transaction([
-    prisma.award.count({ where: { receiverId: user.id } }),
+    prisma.award.count({ where: { receiverId: token.sub } }),
     prisma.award.findMany({
       skip: (page - 1) * size,
       take: size,
-      where: { receiverId: user.id },
+      where: { receiverId: token.sub },
       include: { sender: true },
     }),
   ]);
@@ -35,10 +37,10 @@ export async function GET(request: Request) {
   });
 }
 
-export async function POST(request: Request) {
-  const session = await getServerSession(authOptions);
+export async function POST(request: NextRequest) {
+  const token = await getToken({ req: request, secret: authOptions.secret });
 
-  if (!session) {
+  if (!token) {
     return NextResponse.redirect('/api/auth/signin');
   }
 
@@ -47,7 +49,7 @@ export async function POST(request: Request) {
   // 여기에 try catch 넣어야함?
   const award = await prisma.award.update({
     where: { id: awardId },
-    data: { receiverId: session.user.id },
+    data: { receiverId: token.id },
   });
 
   revalidateTag('award');

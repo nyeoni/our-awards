@@ -1,10 +1,11 @@
+import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth/next';
 import { Configuration, OpenAIApi } from 'openai';
 
 import authOptions from '@/lib/authOptions';
 
 import prisma from '../prisma';
+import { getToken } from 'next-auth/jwt';
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -38,17 +39,10 @@ function removeSurroundingQuotes(str: string) {
   return str; // 따옴표로 둘러싸여 있지 않은 경우 원래 문자열 반환
 }
 
-export async function POST(req: Request) {
-  const session = await getServerSession(authOptions);
+export async function POST(req: NextRequest) {
+  const token = await getToken({ req, secret: authOptions.secret });
 
-  if (!session) {
-    return NextResponse.redirect('/api/auth/signin');
-  }
-
-  const user = await prisma.user.findUnique({ where: { email: session.user.email } });
-
-  if (!user) {
-    console.log('user not found');
+  if (!token || !token.sub) {
     return NextResponse.redirect('/api/auth/signin');
   }
 
@@ -94,7 +88,7 @@ export async function POST(req: Request) {
       name,
       content: newContent,
       host,
-      senderId: user.id,
+      senderId: token.sub,
     },
   });
 

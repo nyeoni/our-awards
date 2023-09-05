@@ -1,4 +1,13 @@
-import NextAuth from 'next-auth';
+import type { DefaultSession } from 'next-auth';
+import type { DefaultJWT } from 'next-auth/jwt';
+
+declare module 'next-auth/jwt' {
+  /** Returned by the `jwt` callback and `getToken`, when using JWT sessions */
+  interface JWT extends Record<string, unknown>, DefaultJWT {
+    /** OpenID ID Token */
+    id?: string;
+  }
+}
 
 declare module 'next-auth' {
   /**
@@ -7,6 +16,7 @@ declare module 'next-auth' {
   interface Session {
     user: {
       /** The user's postal address. */
+      id?: string;
       address: string;
     } & DefaultSession['user'];
   }

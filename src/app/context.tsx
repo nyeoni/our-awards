@@ -11,6 +11,22 @@ type UserAwardsContextType = {
   setCurrentPage: (value: number) => void;
 };
 
+export async function getAward(page: number = 1) {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}${USER_AWARDS_API}?page=${page}`, {
+      method: 'GET',
+      next: { tags: ['award'] },
+      cache: 'force-cache',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    return res.json();
+  } catch (error) {
+    console.log('???????????????????', error);
+  }
+}
+
 const UserAwardsContext = createContext<UserAwardsContextType | null>(null);
 
 // UserAwardsProvider.js
@@ -21,15 +37,7 @@ export const UserAwardsProvider = ({ children }: { children: React.ReactNode }) 
 
   useEffect(() => {
     const update = async () => {
-      const res = await fetch(`${USER_AWARDS_API}?page=${currentPage}`, {
-        next: { tags: ['award'] },
-        cache: 'force-cache',
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      const data = await res.json();
+      const data = await getAward(currentPage);
       setTotal(data.total);
       setAwards({ ...awards, [currentPage]: data.awards });
     };
