@@ -28,6 +28,8 @@ import {
 async function getAward(id: string) {
   if (!id) return;
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASEURL}/api/award/${id}`, {
+    method: 'GET',
+    cache: 'force-cache',
     next: { tags: ['award'] },
   });
   return res.json();
@@ -98,7 +100,13 @@ const TakenAwardButton = ({ id }: { id: string }) => {
         <ShareButton id={id} />
       ) : (
         <>
-          <Button size="lg" color="primary" radius="sm" fullWidth={true} onPress={onOpen}>
+          <Button
+            size="lg"
+            className="bg-gradient-to-r from-primary to-teal-400 text-white shadow-lg"
+            radius="sm"
+            fullWidth={true}
+            onPress={onOpen}
+          >
             수여받기
           </Button>
 
