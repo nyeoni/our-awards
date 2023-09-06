@@ -23,7 +23,8 @@ export async function getAward(page: number = 1) {
     });
     return res.json();
   } catch (error) {
-    console.log('???????????????????', error);
+    console.error('getAward error', error);
+    return { total: 0, awards: [] };
   }
 }
 
