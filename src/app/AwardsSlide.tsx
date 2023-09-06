@@ -12,12 +12,19 @@ import { getAward } from './context';
 
 export const Awards = ({ data = [] }: { data: Award[] }) => {
   const size = 4;
-  const chunkedData = data.reduce((acc, _, i) => {
-    if (i % size === 0) {
-      acc.push(data.slice(i, i + size));
+  const [awards, setAwards] = useState<Award[][]>([]);
+
+  useEffect(() => {
+    if (data.length) {
+      const chunkedData = data.reduce((acc, _, i) => {
+        if (i % size === 0) {
+          acc.push(data.slice(i, i + size));
+        }
+        return acc;
+      }, [] as Award[][]);
+      setAwards(chunkedData);
     }
-    return acc;
-  }, [] as Award[][]);
+  }, [data]);
 
   return (
     <>
@@ -30,8 +37,8 @@ export const Awards = ({ data = [] }: { data: Award[] }) => {
           <div className="oa-shelf oa-shelf-middle grow" />
           <div className="oa-shelf oa-shelf-right grow-0" />
           <ul className="absolute bottom-[10px] flex flex-column items-center justify-space gap-x-1 w-full h-full px-[16px]">
-            {chunkedData[i] &&
-              chunkedData[i].map(award => (
+            {awards[i] &&
+              awards[i].map(award => (
                 <li key={award.id} className="flex flex-col items-center gap-y-1">
                   <label className="block font-uhbee-regular text-xs text-neutral-100 w-[72px] truncate text-center">
                     {award.label}
@@ -61,14 +68,16 @@ export default function AwardsSlide({
 
   useEffect(() => {
     // set data array length to totalPage
-    setData(Array.from({ length: totalPage }));
+    if (total !== 0) {
+      setData(Array.from({ length: totalPage }));
 
-    // set data array to initAwards
-    setData(data => {
-      const newData = [...data];
-      newData[0] = initAwards;
-      return newData;
-    });
+      // set data array to initAwards
+      setData(data => {
+        const newData = [...data];
+        newData[0] = initAwards;
+        return newData;
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initAwards]);
 
