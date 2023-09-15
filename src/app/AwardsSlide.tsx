@@ -1,3 +1,5 @@
+'use client';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
@@ -8,13 +10,14 @@ import type { Award } from '@prisma/client';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { getAward } from './context';
+import { getAward } from './getAwards';
 
 export const Awards = ({ data = [] }: { data: Award[] }) => {
   const size = 4;
   const [awards, setAwards] = useState<Award[][]>([]);
 
   useEffect(() => {
+    console.log('check', data);
     if (data.length) {
       const chunkedData = data.reduce((acc, _, i) => {
         if (i % size === 0) {
@@ -55,41 +58,40 @@ export const Awards = ({ data = [] }: { data: Award[] }) => {
   );
 };
 
-export default function AwardsSlide({
-  initAwards = [],
-  total = 0,
-}: {
-  initAwards: Award[];
-  total: number;
-}) {
-  const totalPage = total / 16 + 1; // useMemo?
-  const [data, setData] = useState<Award[][]>([]);
+const resource = getAward();
+
+export default async function AwardsSlide() {
+  const [awardGroups, setAwardGroups] = useState<Award[][]>([]);
+  const [total, setTotal] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const totalPage = Math.floor(total / 16) + 1;
+  const data = resource.read();
 
   useEffect(() => {
-    // set data array length to totalPage
-    if (total !== 0) {
-      setData(Array.from({ length: totalPage }));
+    if (data) {
+      console.log('data', data);
+      const { total, awards } = data;
 
-      // set data array to initAwards
-      setData(data => {
-        const newData = [...data];
-        newData[0] = initAwards;
+      setTotal(total);
+      setAwardGroups(Array.from({ length: totalPage }));
+      setAwardGroups(prev => {
+        const newData = [...prev];
+        newData[0] = awards;
         return newData;
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [initAwards]);
+  }, []);
 
   const handleSlideChange = async (swiper: SwiperClass) => {
     const { activeIndex } = swiper;
     // const nextPage = Math.ceil((activeIndex + 1) / 10); // 10은 한 페이지에 표시되는 아이템 수
 
     setCurrentPage(activeIndex + 1);
-    if (activeIndex + 1 > data.length) {
-      console.log('=======calling========');
-      const { awards } = await getAward(currentPage);
-      setData(data => {
+    if (activeIndex + 1 > awardGroups.length) {
+      const { awards } = await getAward(currentPage).read();
+
+      setAwardGroups(data => {
         const newData = [...data];
         newData[activeIndex] = awards;
         return newData;
@@ -98,22 +100,20 @@ export default function AwardsSlide({
   };
 
   return (
-    <section className="grow w-full flex">
-      <Swiper
-        slidesPerView={1}
-        pagination={{
-          dynamicBullets: true,
-        }}
-        onSlideChange={handleSlideChange}
-        modules={[Pagination]}
-        className="w-full"
-      >
-        {Array.from({ length: total / 16 + 1 }).map((_, i) => (
-          <SwiperSlide key={i}>
-            <Awards data={data[i]} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </section>
+    <Swiper
+      slidesPerView={1}
+      pagination={{
+        dynamicBullets: true,
+      }}
+      onSlideChange={handleSlideChange}
+      modules={[Pagination]}
+      className="w-full"
+    >
+      {Array.from({ length: totalPage }).map((_, i) => (
+        <SwiperSlide key={i}>
+          <Awards data={awardGroups[i]} />
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 }

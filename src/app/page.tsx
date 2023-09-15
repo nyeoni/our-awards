@@ -1,28 +1,26 @@
 'use client';
 
-import { getAward, UserAwardsProvider } from './context';
-import { useSession } from 'next-auth/react';
 import { Button } from '@nextui-org/react';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
-import AwardsSlide from './AwardsSlide';
+const Intro = dynamic(() => import('./Intro'), { ssr: false });
+const AwardsSlide = dynamic(() => import('./AwardsSlide'), { ssr: false });
 
-export default async function Page() {
-  const { data: session } = useSession();
-  const data = await getAward();
-
+export default function Page() {
   return (
-    <UserAwardsProvider>
+    <>
       <section className="flex flex-col gap-1 w-full mb-10 grow-0">
-        <div className="font-uhbee-regular text-2xl">{session?.user.name} 님은</div>
-        <div className="font-uhbee-regular text-2xl">
-          총 <span className="text-secondary">{data?.total}</span> 개의 상을 받았습니다.
-        </div>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Intro />
+        </Suspense>
       </section>
-      <Suspense fallback={<div>Loading...</div>}>
-        <AwardsSlide initAwards={data?.awards} total={data?.total} />
-      </Suspense>
+      <section className="grow w-full flex">
+        <Suspense fallback={<div>Fuckingng...</div>}>
+          <AwardsSlide />
+        </Suspense>
+      </section>
       <Button
         as={Link}
         href="/award"
@@ -34,6 +32,6 @@ export default async function Page() {
       >
         시상식 개최하기
       </Button>
-    </UserAwardsProvider>
+    </>
   );
 }
