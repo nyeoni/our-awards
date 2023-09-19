@@ -2,10 +2,11 @@
 
 import { useEffect } from 'react';
 
-import { Spinner } from '@nextui-org/react';
 import { redirect } from 'next/navigation';
 
 import { useSession } from 'next-auth/react';
+
+import { Spinner } from '@nextui-org/react';
 
 export default function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { status } = useSession();

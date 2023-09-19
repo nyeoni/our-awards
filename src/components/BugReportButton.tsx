@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from 'react';
 
+import Image from 'next/image';
+
 import { Button, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react';
 
 import megaphoneImg from '@/public/assets/megaphone.png';
-import Image from 'next/image';
 
 export default function BugReportButton() {
   const [isOpen, setIsOpen] = useState(true);

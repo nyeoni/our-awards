@@ -1,8 +1,8 @@
 import localFont from 'next/font/local';
 
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 import { NextAuthProvider, UIProviders } from '@/contexts';
 import '@/styles/global.css';
-import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 export const metadata = {
   title: 'Our Awards',

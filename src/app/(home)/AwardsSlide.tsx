@@ -1,5 +1,10 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
+import Image from 'next/image';
+import Link from 'next/link';
+
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
@@ -7,11 +12,10 @@ import type { SwiperClass } from 'swiper/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import type { Award } from '@prisma/client';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { getAward } from '../../getAwards';
+
 import { ROUTE } from '@/constants/route';
+
+import { getAward } from '../getAwards';
 
 export const Awards = ({ data = [] }: { data: Award[] }) => {
   const [awards, setAwards] = useState<Award[][]>();

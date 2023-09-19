@@ -2,11 +2,12 @@
 
 import { Button } from '@nextui-org/react';
 import Link from 'next/link';
-import { IntroSkeleton } from './components/Intro';
 import dynamic from 'next/dynamic';
 import { ROUTE } from '@/constants/route';
 
-const Intro = dynamic(() => import('./components/Intro'), {
+import { IntroSkeleton } from './Intro';
+
+const Intro = dynamic(() => import('./Intro'), {
   loading: () => <IntroSkeleton />,
   ssr: false,
 });
