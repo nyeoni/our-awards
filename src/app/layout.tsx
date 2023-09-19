@@ -1,10 +1,8 @@
 import localFont from 'next/font/local';
 
-import { NextAuthProvider, UIProviders } from '@/context';
-import '@/style/global.css';
-
-import BugReportButton from './BugReportButton';
-import GoogleAnalytics from './GoogleAnalytics';
+import { NextAuthProvider, UIProviders } from '@/contexts';
+import '@/styles/global.css';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 export const metadata = {
   title: 'Our Awards',
@@ -36,7 +34,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <main className={`root-container ${uhbeeRegular.variable} ${uhbeeBold.variable}`}>
               {children}
             </main>
-            <BugReportButton />
           </UIProviders>
           <div id="portal" className="w-0 h-0" />
         </NextAuthProvider>

@@ -2,7 +2,7 @@ import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 import { Configuration, OpenAIApi } from 'openai';
 
-import authOptions from '@/lib/authOptions';
+import authOptions from '@/libs/authOptions';
 
 import prisma from '../prisma';
 import { getToken } from 'next-auth/jwt';
