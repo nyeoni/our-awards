@@ -1,13 +1,20 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
+import useSWR from 'swr';
+
 // import { useEffect, useState } from 'react';
 import { Skeleton } from '@nextui-org/react';
 
-export default async function Intro() {
+export default function Intro() {
   // const [total, setTotal] = useState(0);
-  const { data: session } = useSession();
-  // const data = await getAward();
+  const { data: session } = useSession({ required: true });
+  const { data } = useSWR(
+    '/api/user/award?page=1',
+    (url: string) => fetch(url).then(res => res.json()),
+    { suspense: true }
+  );
+  // const data = await getAward()
 
   // useEffect(() => {
   //   const update = async () => {
@@ -23,7 +30,7 @@ export default async function Intro() {
     <>
       <div className="font-uhbee-regular text-2xl">{session?.user.name} 님은</div>
       <div className="font-uhbee-regular text-2xl">
-        총 <span className="text-secondary">{'??'}</span> 개의 상을 받았습니다.
+        총 <span className="text-secondary">{data.total}</span> 개의 상을 받았습니다.
       </div>
     </>
   );

@@ -1,17 +1,13 @@
 'use client';
 
-import { Button } from '@nextui-org/react';
 import Link from 'next/link';
-import dynamic from 'next/dynamic';
+
+import { Button } from '@nextui-org/react';
+
 import { ROUTE } from '@/constants/route';
 
-import { IntroSkeleton } from './Intro';
-
-const Intro = dynamic(() => import('./Intro'), {
-  loading: () => <IntroSkeleton />,
-  ssr: false,
-});
-// const AwardsSlide = dynamic(() => import('./AwardsSlide'), { ssr: false });
+import AwardsSlide from './AwardsSlide';
+import Intro from './Intro';
 
 export default function Page() {
   return (
@@ -20,9 +16,7 @@ export default function Page() {
         <Intro />
       </section>
       <section className="grow w-full flex">
-        {/* <Suspense fallback={<div>Fuckingng...</div>}>
-          <AwardsSlide />
-        </Suspense> */}
+        <AwardsSlide />
       </section>
       <Button
         as={Link}
