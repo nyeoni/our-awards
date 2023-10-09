@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { Button } from '@nextui-org/react';
 
 import { ROUTE } from '@/constants/route';
+import { SWRConfigProvider } from '@/contexts/SWRConfigProvider';
 
 import { AwardsSlideSkeleton } from './AwardsSlide';
 import { IntroSkeleton } from './Intro';
@@ -13,14 +14,15 @@ import { IntroSkeleton } from './Intro';
 // import AwardsSlide, { AwardsSlideSkeleton } from './AwardsSlide';
 // import Intro, { IntroSkeleton } from './Intro';
 
-const Intro = dynamic(() => import('./Intro'), { loading: () => <IntroSkeleton /> });
+const Intro = dynamic(() => import('./Intro'), { ssr: false, loading: () => <IntroSkeleton /> });
 const AwardsSlide = dynamic(() => import('./AwardsSlide'), {
+  ssr: false,
   loading: () => <AwardsSlideSkeleton />,
 });
 
 export default function Page() {
   return (
-    <>
+    <SWRConfigProvider>
       <section className="flex flex-col gap-1 w-full mb-10 grow-0 basis-12">
         <Intro />
       </section>
@@ -38,6 +40,6 @@ export default function Page() {
       >
         시상식 개최하기
       </Button>
-    </>
+    </SWRConfigProvider>
   );
 }

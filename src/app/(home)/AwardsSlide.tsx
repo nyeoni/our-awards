@@ -46,7 +46,8 @@ export const AwardContainer = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-const getKey = (pageIndex: number) => {
+const getKey = (pageIndex: number, previousPageData: UserAwardsDto[]) => {
+  if (previousPageData && !previousPageData.length) return null;
   return `${process.env.NEXT_PUBLIC_BASEURL}/api/user/award?page=${pageIndex + 1}`;
 };
 
@@ -68,11 +69,12 @@ const getUserAwards = async (url: string): Promise<UserAwardsDto> => {
 };
 
 export default function AwardsSlide() {
-  const { data = null, setSize } = useSWRInfinite(getKey, getUserAwards, {
+  const { data, setSize } = useSWRInfinite(getKey, getUserAwards, {
     initialSize: 2,
     parallel: false,
     suspense: true,
   });
+
   const totalPage = data ? Math.floor(data[0].total / 16) + 1 : 1;
 
   const handleSlideChange = () => {

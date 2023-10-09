@@ -9,8 +9,8 @@ import { Skeleton } from '@nextui-org/react';
 export default function Intro() {
   // const [total, setTotal] = useState(0);
   const { data: session } = useSession({ required: true });
-  const { data = null } = useSWR(
-    `${process.env.NEXT_PUBLIC_BASEURL}/api/user/award?page=1`,
+  const { data } = useSWR(
+    'api/user/award?page=1',
     (url: string) => fetch(url).then(res => res.json()),
     { suspense: true }
   );
