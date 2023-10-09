@@ -9,13 +9,14 @@ import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import useSWRInfinite from 'swr/infinite';
 
+import { Skeleton } from '@nextui-org/react';
 import type { Award } from '@prisma/client';
 
 import { ROUTE } from '@/constants/route';
 
-const AwardItem = ({ award }: { award: Award }) => {
+export const AwardItem = ({ award }: { award: Award }) => {
   return (
-    <li key={award.id} className="flex flex-col items-center gap-y-1">
+    <li className="flex flex-col items-center gap-y-1">
       <label className="block font-uhbee-regular text-xs text-neutral-100 w-[72px] truncate text-center">
         {award.label}
       </label>
@@ -26,7 +27,7 @@ const AwardItem = ({ award }: { award: Award }) => {
   );
 };
 
-const AwardContainer = ({ children }: { children: React.ReactNode }) => {
+export const AwardContainer = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       key={Math.random()}
@@ -67,9 +68,10 @@ const getUserAwards = async (url: string): Promise<UserAwardsDto> => {
 };
 
 export default function AwardsSlide() {
-  const { data, setSize } = useSWRInfinite(getKey, getUserAwards, {
+  const { data = null, setSize } = useSWRInfinite(getKey, getUserAwards, {
     initialSize: 2,
     parallel: false,
+    suspense: true,
   });
   const totalPage = data ? Math.floor(data[0].total / 16) + 1 : 1;
 
@@ -89,17 +91,31 @@ export default function AwardsSlide() {
     >
       {Array.from({ length: totalPage }).map((_, i) => (
         <SwiperSlide key={Math.random()}>
-          {data &&
-            data[i] &&
-            Array.from({ length: 4 }).map((_, j) => (
-              <AwardContainer key={j}>
-                {data[i].awards.slice(j * 4, j * 4 + 4).map(award => (
-                  <AwardItem key={award.id} award={award} />
-                ))}
-              </AwardContainer>
-            ))}
+          {Array.from({ length: 4 }).map((_, j) => (
+            <AwardContainer key={j}>
+              {data &&
+                data[i] &&
+                data[i].awards
+                  .slice(j * 4, j * 4 + 4)
+                  .map(award => <AwardItem key={award.id} award={award} />)}
+            </AwardContainer>
+          ))}
         </SwiperSlide>
       ))}
     </Swiper>
   );
 }
+
+export const AwardsSlideSkeleton = () => {
+  return (
+    <>
+      {Array.from({ length: 4 }).map((_, i) => (
+        <AwardContainer key={i}>
+          <Skeleton className="rounded-lg">
+            <AwardItem award={{ id: '1', label: 'null' } as any} />
+          </Skeleton>
+        </AwardContainer>
+      ))}
+    </>
+  );
+};

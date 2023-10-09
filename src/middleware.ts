@@ -14,7 +14,7 @@ export default withAuth({
   //   },
   // },
   pages: {
-    signIn: '/auth',
+    signIn: '/login',
   },
 });
 

@@ -3,10 +3,12 @@
 import { useEffect, useState } from 'react';
 
 import { useSearchParams } from 'next/navigation';
+
 import { signIn } from 'next-auth/react';
 
 import { Logo, Toast } from '@/components';
 import { GoogleBtn, KakaoBtn, NaverBtn } from '@/components/oauth';
+
 import { BgAnimation } from '../BgAnimation';
 
 const OAUTH_ACCOUNT_NOT_LINKED = 'OAuthAccountNotLinked';

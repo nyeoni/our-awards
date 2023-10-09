@@ -1,13 +1,22 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
 import { Button } from '@nextui-org/react';
 
 import { ROUTE } from '@/constants/route';
 
-import AwardsSlide from './AwardsSlide';
-import Intro from './Intro';
+import { AwardsSlideSkeleton } from './AwardsSlide';
+import { IntroSkeleton } from './Intro';
+
+// import AwardsSlide, { AwardsSlideSkeleton } from './AwardsSlide';
+// import Intro, { IntroSkeleton } from './Intro';
+
+const Intro = dynamic(() => import('./Intro'), { loading: () => <IntroSkeleton /> });
+const AwardsSlide = dynamic(() => import('./AwardsSlide'), {
+  loading: () => <AwardsSlideSkeleton />,
+});
 
 export default function Page() {
   return (
@@ -15,7 +24,7 @@ export default function Page() {
       <section className="flex flex-col gap-1 w-full mb-10 grow-0 basis-12">
         <Intro />
       </section>
-      <section className="grow w-full flex">
+      <section className="grow w-full flex-col">
         <AwardsSlide />
       </section>
       <Button
