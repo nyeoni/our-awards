@@ -2,6 +2,10 @@
 
 import { useRef, useState } from 'react';
 
+import { useRouter } from 'next/navigation';
+
+import { useSession } from 'next-auth/react';
+
 import {
   Button,
   Modal,
@@ -11,18 +15,18 @@ import {
   ModalHeader,
   useDisclosure,
 } from '@nextui-org/react';
-import { useRouter } from 'next/navigation';
-
-import { useSession } from 'next-auth/react';
+import type { Award } from '@prisma/client';
 
 import { Toast, useToast } from '@/components';
-
-import { SparklesAnimation } from '../SparklesAnimation';
-import { ShareButton } from '../ShareButton';
-import { ImgSaveButton } from '../ImgSaveButton';
-import { Award } from '../Award';
-import { NavigateButton } from '../NavigateButton';
 import { ROUTE } from '@/constants/route';
+
+import { Award as AwardImg } from '../Award';
+import { ImgSaveButton } from '../ImgSaveButton';
+import { NavigateButton } from '../NavigateButton';
+import { ShareButton } from '../ShareButton';
+import { SparklesAnimation } from '../SparklesAnimation';
+
+export const revalidate = 3600;
 
 async function getAward(id: string) {
   if (!id) return;
@@ -40,29 +44,37 @@ export default async function Page({ params }: { params: { id: string } }) {
   // 수여받지 않았으면 -> 수여받을 수 있는 버튼을 보여준다. -> 버튼을 클릭하면 -> 모달이 뜨고, 정말 그 사람이 맞는지 확인하는 로직을 추가한다.
   const captureRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const { data: session } = useSession();
-
-  const user = session?.user;
   const award = await getAward(params.id);
 
   return (
     <div className="flex flex-col justify-between w-full h-full">
       <NavigateButton label="메인페이지로" onClick={() => router.push(ROUTE.HOME)} />
       <div ref={captureRef}>
-        <Award award={award} />
+        <AwardImg award={award} />
       </div>
       <section className="flex flex-col gap-y-2 grow-0">
-        {user?.id !== award.senderId && !award.receiverId ? (
-          <TakenAwardButton id={params.id} />
-        ) : (
-          <ShareButton id={params.id} />
-        )}
+        <UserButton award={award} />
         <ImgSaveButton captureRef={captureRef} />
       </section>
       <SparklesAnimation />
     </div>
   );
 }
+
+const UserButton = ({ award }: { award: Award }) => {
+  const { data: session } = useSession();
+  const user = session?.user;
+
+  return (
+    <>
+      {user?.id !== award.senderId && !award.receiverId ? (
+        <TakenAwardButton id={award.id} />
+      ) : (
+        <ShareButton id={award.id} />
+      )}
+    </>
+  );
+};
 
 const TakenAwardButton = ({ id }: { id: string }) => {
   const router = useRouter();

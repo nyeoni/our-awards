@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { Button } from '@nextui-org/react';
 
 import { ROUTE } from '@/constants/route';
-import { SWRConfigProvider } from '@/contexts/SWRConfigProvider';
 
 import { AwardsSlideSkeleton } from './AwardsSlide';
 import { IntroSkeleton } from './Intro';
@@ -22,7 +21,7 @@ const AwardsSlide = dynamic(() => import('./AwardsSlide'), {
 
 export default function Page() {
   return (
-    <SWRConfigProvider>
+    <>
       <section className="flex flex-col gap-1 w-full mb-10 grow-0 basis-12">
         <Intro />
       </section>
@@ -40,6 +39,6 @@ export default function Page() {
       >
         시상식 개최하기
       </Button>
-    </SWRConfigProvider>
+    </>
   );
 }

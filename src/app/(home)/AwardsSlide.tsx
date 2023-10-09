@@ -13,6 +13,7 @@ import { Skeleton } from '@nextui-org/react';
 import type { Award } from '@prisma/client';
 
 import { ROUTE } from '@/constants/route';
+import { getData } from '@/libs/api';
 
 export const AwardItem = ({ award }: { award: Award }) => {
   return (
@@ -38,17 +39,13 @@ export const AwardContainer = ({ children }: { children: React.ReactNode }) => {
       <div className="oa-shelf oa-shelf-right grow-0" />
       <ul className="absolute bottom-[10px] flex flex-column items-center justify-space gap-x-1 w-full h-full px-[16px]">
         {children}
-        {/* {awards &&
-              awards[i] &&
-              awards[i].map(award => <AwardItem key={award.id} award={award} />)} */}
       </ul>
     </div>
   );
 };
 
-const getKey = (pageIndex: number, previousPageData: UserAwardsDto[]) => {
-  if (previousPageData && !previousPageData.length) return null;
-  return `${process.env.NEXT_PUBLIC_BASEURL}/api/user/award?page=${pageIndex + 1}`;
+const getKey = (pageIndex: number) => {
+  return `/api/user/award?page=${pageIndex + 1}`;
 };
 
 type UserAwardsDto = {
@@ -56,26 +53,11 @@ type UserAwardsDto = {
   awards: Award[];
 };
 
-const getUserAwards = async (url: string): Promise<UserAwardsDto> => {
-  const res = await fetch(url);
-
-  if (!res.ok) {
-    console.group('res', res);
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('getUserAwards: Failed to fetch data');
-  }
-
-  return res.json();
-};
-
 export default function AwardsSlide() {
-  const { data, setSize } = useSWRInfinite(getKey, getUserAwards, {
+  const { data, setSize } = useSWRInfinite<UserAwardsDto>(getKey, getData, {
     initialSize: 2,
-    parallel: false,
     suspense: true,
   });
-
-  const totalPage = data ? Math.floor(data[0].total / 16) + 1 : 1;
 
   const handleSlideChange = () => {
     setSize(prev => prev + 1);
@@ -91,7 +73,7 @@ export default function AwardsSlide() {
       modules={[Pagination]}
       className="w-full"
     >
-      {Array.from({ length: totalPage }).map((_, i) => (
+      {Array.from({ length: data ? Math.floor(data[0].total / 16) + 1 : 1 }).map((_, i) => (
         <SwiperSlide key={Math.random()}>
           {Array.from({ length: 4 }).map((_, j) => (
             <AwardContainer key={j}>

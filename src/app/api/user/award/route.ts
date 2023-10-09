@@ -13,15 +13,13 @@ export async function GET(request: NextRequest) {
 
   const { searchParams } = new URL(request.url);
   const page = Number(searchParams.get('page') ?? '1');
-  const size = Number(searchParams.get('size') ?? '12');
+  const size = Number(searchParams.get('size') ?? '16');
 
   // 세션 검사
   if (!token) {
     return NextResponse.json({ error: 'Token is missing' }, { status: 401 });
     // return NextResponse.redirect(`${process.env.NEXT_PUBLIC_BASEURL}/api/auth/signin`);
   }
-
-  console.log('GET /user/award', token);
 
   const data = await prisma.$transaction([
     prisma.award.count({ where: { receiverId: token.sub } }),
@@ -32,6 +30,8 @@ export async function GET(request: NextRequest) {
       include: { sender: true },
     }),
   ]);
+
+  console.log('GET /user/award');
 
   return NextResponse.json({
     total: data[0],
