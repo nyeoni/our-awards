@@ -1,11 +1,12 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
+
+import { getToken } from 'next-auth/jwt';
 import { Configuration, OpenAIApi } from 'openai';
 
 import authOptions from '@/libs/authOptions';
 
 import prisma from '../prisma';
-import { getToken } from 'next-auth/jwt';
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -60,7 +61,7 @@ export async function POST(req: NextRequest) {
       },
       {
         role: 'user',
-        content: `다음은 칭찬의 내용을 포함하는 상장을 만드는 시나리오입니다. 칭찬 내용: ${content}. 상장이름은 8글자 이내로 지어주고, 상장내용은 칭찬 내용을 바탕으로 "위 사람은" 으로 시작해서 "무엇으로 어떤 것을 하여" 는 칭찬 내용을 바탕으로 함체로 간단하게 채워서 넣어주고, 마지막은 "이를 칭찬하여 이 상장을 수여함" 으로 끝나는 형식으로 만들어줘.`,
+        content: `다음은 칭찬의 내용을 포함하는 상장을 만드는 시나리오입니다. 칭찬 내용: ${content}. 상장이름은 8글자 이내로 지어주고, 상장내용은 칭찬 내용을 바탕으로 "위 사람은" 으로 시작해서 "무엇으로 어떤 것을 하여" 는 칭찬 내용을 바탕으로 음슴체로 간단하게 채워서 넣어주고, 마지막은 "이를 칭찬하여 이 상장을 수여함" 으로 끝나는 형식으로 만들어줘.`,
       },
     ],
     temperature: 0.5,
