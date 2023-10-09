@@ -113,9 +113,10 @@ export const AwardsSlideSkeleton = () => {
     <>
       {Array.from({ length: 4 }).map((_, i) => (
         <AwardContainer key={i}>
-          <Skeleton className="rounded-lg">
-            <AwardItem award={{ id: '1', label: 'null' } as any} />
-          </Skeleton>
+          <div className="flex flex-col items-center gap-y-1">
+            <Skeleton className="rounded-lg h-[12px] w-[72px] opacity-70" />
+            <Skeleton className="rounded-lg h-[72px] w-[72px] opacity-70" />
+          </div>
         </AwardContainer>
       ))}
     </>

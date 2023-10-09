@@ -28,10 +28,10 @@ export default function Intro() {
 export const IntroSkeleton = () => {
   return (
     <>
-      <Skeleton className="w-3/5 h-8 rounded-lg">
+      <Skeleton className="w-3/5 h-8 rounded-xl opacity-60">
         <div className="font-uhbee-regular text-2xl"></div>
       </Skeleton>
-      <Skeleton className="w-4/5 h-8 rounded-lg">
+      <Skeleton className="w-4/5 h-8 rounded-xl opacity-60">
         <div className="font-uhbee-regular text-2xl"></div>
       </Skeleton>
     </>
