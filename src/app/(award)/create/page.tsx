@@ -2,15 +2,16 @@
 
 import { useState } from 'react';
 
-import { Progress } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 
+import { Progress } from '@nextui-org/react';
+
+import { BackButton } from '@/components';
+import { ROUTE } from '@/constants/route';
 import TargetInfoProvider, { useTargetInfoContext } from '@/contexts/TargetInfoProvider';
 
-import { ContentPage, HostPage, NamePage } from './_pages';
 import { ResultLoading } from './ResultLoading';
-import { ROUTE } from '@/constants/route';
-import { BackButton } from '@/components';
+import { ContentPage, HostPage, NamePage } from './_pages';
 
 const pages = [{ Component: NamePage }, { Component: ContentPage }, { Component: HostPage }];
 
