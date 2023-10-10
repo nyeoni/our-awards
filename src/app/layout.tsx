@@ -11,6 +11,22 @@ export const metadata = {
   httpEquiv: {
     'Content-Security-Policy': "default-src 'self'; connect-src vitals.vercel-insights.com",
   },
+  openGraph: {
+    type: 'website',
+    locale: 'ko_KR',
+    url: 'https://our-awards.net/',
+    site_name: 'Our Awards',
+    title: '우리들의 시상식',
+    description: '서로 상을 주고 받아보아요!',
+    images: [
+      {
+        url: '/assets/logo2.png',
+        width: 800,
+        height: 600,
+        alt: 'Our Awards',
+      },
+    ],
+  },
 };
 
 const uhbeeRegular = localFont({
