@@ -53,10 +53,14 @@ type UserAwardsDto = {
   awards: Award[];
 };
 
-export default function AwardsSlide() {
+export default function AwardsSwiper() {
   const { data, setSize } = useSWRInfinite<UserAwardsDto>(getKey, getData, {
-    initialSize: 2,
     suspense: true,
+    initialSize: 2,
+    dedupingInterval: 36000,
+    refreshInterval: 36000,
+    revalidateOnFocus: false,
+    revalidateOnMount: false,
   });
 
   const handleSlideChange = () => {
@@ -74,21 +78,25 @@ export default function AwardsSlide() {
       className="w-full"
     >
       {Array.from({ length: data ? Math.floor(data[0].total / 16) + 1 : 1 }).map((_, i) => (
-        <SwiperSlide key={Math.random()}>
-          {Array.from({ length: 4 }).map((_, j) => (
-            <AwardContainer key={j}>
-              {data &&
-                data[i] &&
-                data[i].awards
-                  .slice(j * 4, j * 4 + 4)
-                  .map(award => <AwardItem key={award.id} award={award} />)}
-            </AwardContainer>
-          ))}
-        </SwiperSlide>
+        <AwardSwiperSlide key={i} awards={data && data[i] ? data[i].awards : []} />
       ))}
     </Swiper>
   );
 }
+
+const AwardSwiperSlide = ({ awards }: { awards: Award[] }) => {
+  return (
+    <SwiperSlide>
+      {Array.from({ length: 4 }).map((_, j) => (
+        <AwardContainer key={j}>
+          {awards.slice(j * 4, j * 4 + 4).map(award => (
+            <AwardItem key={award.id} award={award} />
+          ))}
+        </AwardContainer>
+      ))}
+    </SwiperSlide>
+  );
+};
 
 export const AwardsSlideSkeleton = () => {
   return (

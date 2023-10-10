@@ -2,6 +2,7 @@ import localFont from 'next/font/local';
 
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import { NextAuthProvider, UIProviders } from '@/contexts';
+import { SWRConfigProvider } from '@/contexts/SWRConfigProvider';
 import '@/styles/global.css';
 
 export const metadata = {
@@ -29,14 +30,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className="normal oa-background">
       <body>
         <GoogleAnalytics />
-        <NextAuthProvider>
-          <UIProviders>
-            <main className={`root-container ${uhbeeRegular.variable} ${uhbeeBold.variable}`}>
-              {children}
-            </main>
-          </UIProviders>
-          <div id="portal" className="w-0 h-0" />
-        </NextAuthProvider>
+        <SWRConfigProvider>
+          <NextAuthProvider>
+            <UIProviders>
+              <main className={`root-container ${uhbeeRegular.variable} ${uhbeeBold.variable}`}>
+                {children}
+              </main>
+            </UIProviders>
+            <div id="portal" className="w-0 h-0" />
+          </NextAuthProvider>
+        </SWRConfigProvider>
       </body>
     </html>
   );

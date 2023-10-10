@@ -12,5 +12,9 @@ const fetchData = async (url: string) => {
 };
 
 export const SWRConfigProvider = ({ children }: { children: React.ReactNode }) => {
-  return <SWRConfig value={{ suspense: true, fetcher: fetchData }}>{children}</SWRConfig>;
+  return (
+    <SWRConfig value={{ provider: () => new Map(), suspense: true, fetcher: fetchData }}>
+      {children}
+    </SWRConfig>
+  );
 };
