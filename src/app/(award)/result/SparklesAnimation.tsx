@@ -1,4 +1,7 @@
+'use client';
+
 import { useState } from 'react';
+
 import Lottie from 'lottie-react';
 
 import sparklesAnimation from './sparkles_animation.json';

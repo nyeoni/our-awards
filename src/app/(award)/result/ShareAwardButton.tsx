@@ -1,15 +1,17 @@
 import { Button } from '@nextui-org/react';
+import type { Award } from '@prisma/client';
 
 import { Toast, useToast } from '@/components';
 import { ROUTE } from '@/constants/route';
 
-export const ShareButton = ({ id }: { id: string }) => {
+export const ShareAwardButton = ({ award }: { award: Award }) => {
   const { isVisible, message, open, close } = useToast();
+  const { id } = award;
 
   const handleShare = () => {
     const shareObject = {
       title: '우리들의 시상식',
-      text: `당신에게 상을 수여합니다!`, // 이거 바꿔야함
+      text: `${award.name}님에게 ${award.label}이 도착했어요!`, // 이거 바꿔야함
       url: `${process.env.NEXT_PUBLIC_BASEURL}${ROUTE.AWARD.RESULT}/${id}`,
     };
 

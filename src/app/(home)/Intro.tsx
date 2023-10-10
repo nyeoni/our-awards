@@ -6,7 +6,7 @@ import useSWR from 'swr';
 // import { useEffect, useState } from 'react';
 import { Skeleton } from '@nextui-org/react';
 
-import { getData } from '@/libs/api';
+import { getData } from '@/libs/api/core';
 
 export default function Intro() {
   // const [total, setTotal] = useState(0);

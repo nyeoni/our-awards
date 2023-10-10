@@ -13,7 +13,7 @@ import { Skeleton } from '@nextui-org/react';
 import type { Award } from '@prisma/client';
 
 import { ROUTE } from '@/constants/route';
-import { getData } from '@/libs/api';
+import { getData } from '@/libs/api/core';
 
 export const AwardItem = ({ award }: { award: Award }) => {
   return (

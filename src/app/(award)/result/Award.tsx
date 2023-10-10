@@ -1,6 +1,7 @@
 import type { Award, User } from '@prisma/client';
+import { AwardDto } from './[id]/page';
 
-export function Award({ award }: { award: Award & { sender: User } }) {
+export function Award({ award }: { award: AwardDto }) {
   const { label, name, content, createdAt, host, sender } = award;
   const date = new Date(createdAt);
 
