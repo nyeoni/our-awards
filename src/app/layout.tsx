@@ -14,7 +14,7 @@ export const metadata = {
   openGraph: {
     type: 'website',
     locale: 'ko_KR',
-    url: 'https://our-awards.net/',
+    url: 'https://www.our-awards.net/',
     site_name: 'Our Awards',
     title: '우리들의 시상식',
     description: '서로 상을 주고 받아보아요!',
