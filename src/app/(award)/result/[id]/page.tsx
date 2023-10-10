@@ -41,7 +41,7 @@ export async function generateMetadata(
     openGraph: {
       title: '우리들의 시상식',
       description: `${product.name}님에게 상이 도착했어요!`,
-      images: ['/assets/logo2.png', ...previousImages],
+      images: ['/assets/preview.png', ...previousImages],
     },
   };
 }

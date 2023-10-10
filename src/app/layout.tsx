@@ -20,7 +20,7 @@ export const metadata = {
     description: '서로 상을 주고 받아보아요!',
     images: [
       {
-        url: '/assets/logo2.png',
+        url: '/assets/preview.png',
         width: 800,
         height: 600,
         alt: 'Our Awards',
