@@ -73,7 +73,7 @@ export default function AwardsSwiper() {
       onSwiper={handleSlideChange}
       spaceBetween={16}
       modules={[Navigation, Pagination]}
-      className="w-full"
+      className="w-full h-full"
     >
       {Array.from({
         length: data
@@ -92,7 +92,7 @@ export default function AwardsSwiper() {
 
 const AwardSwiperSlide = ({ awards }: { awards: Award[] }) => {
   return (
-    <div>
+    <div className="flex flex-col justify-between pb-3">
       {Array.from({ length: 4 }).map((_, j) => (
         <AwardContainer key={j}>
           {awards.slice(j * 4, j * 4 + 4).map(award => (

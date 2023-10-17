@@ -25,7 +25,7 @@ export default function Page() {
       <section className="flex flex-col gap-1 w-full mb-10 grow-0 basis-12">
         <Intro />
       </section>
-      <section className="grow w-full flex-col">
+      <section className="grow w-full flex flex-col pb-4">
         <AwardsSlide />
       </section>
       <Button
