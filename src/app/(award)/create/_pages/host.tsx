@@ -28,6 +28,9 @@ export const HostPage: PageComponent = ({ onNext }) => {
       <section
         className="flex flex-col gap-3 justify-center h-full w-full"
         onKeyDown={e => {
+          if (e.nativeEvent.isComposing) {
+            return;
+          }
           if (e.key === 'Enter') {
             handleClick();
           }
