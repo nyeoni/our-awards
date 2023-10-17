@@ -31,7 +31,7 @@ export const AwardContainer = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       key={Math.random()}
-      className="flex items-end justify-center gap-0 w-full h-20 relative my-5"
+      className="flex items-end justify-center h-20 gap-0 w-full relative mt-6"
     >
       <div className="oa-shelf oa-shelf-left grow-0" />
       <div className="oa-shelf oa-shelf-middle grow" />
@@ -73,7 +73,7 @@ export default function AwardsSwiper() {
       onSwiper={handleSlideChange}
       spaceBetween={16}
       modules={[Navigation, Pagination]}
-      className="w-full h-full"
+      className="w-full h-full flex"
     >
       {Array.from({
         length: data
@@ -92,7 +92,7 @@ export default function AwardsSwiper() {
 
 const AwardSwiperSlide = ({ awards }: { awards: Award[] }) => {
   return (
-    <div className="flex flex-col justify-between pb-3">
+    <div className="flex flex-col justify-between">
       {Array.from({ length: 4 }).map((_, j) => (
         <AwardContainer key={j}>
           {awards.slice(j * 4, j * 4 + 4).map(award => (

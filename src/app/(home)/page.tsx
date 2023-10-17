@@ -22,10 +22,10 @@ const AwardsSlide = dynamic(() => import('./AwardsSlide'), {
 export default function Page() {
   return (
     <>
-      <section className="flex flex-col gap-1 w-full mb-10 grow-0 basis-12">
+      <section className="flex flex-col gap-1 w-full grow-0 basis-12">
         <Intro />
       </section>
-      <section className="grow w-full flex flex-col pb-4">
+      <section className="w-full pt-10 flex flex-col grow">
         <AwardsSlide />
       </section>
       <Button
