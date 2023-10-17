@@ -16,7 +16,7 @@ export function SparklesAnimation() {
   return (
     <>
       {!isAnimationComplete && (
-        <div className="fixed bottom-1/3 left-auto flex w-full">
+        <div className="fixed bottom-1/3 flex w-full justify-center">
           <Lottie animationData={sparklesAnimation} loop={false} onComplete={handleComplete} />
         </div>
       )}
