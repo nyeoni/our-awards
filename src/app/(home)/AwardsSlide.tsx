@@ -54,7 +54,7 @@ type UserAwardsDto = {
 
 export default function AwardsSwiper() {
   const { data, setSize } = useSWRInfinite<UserAwardsDto>(getKey, getData, {
-    fallbackData: [{ total: 0, awards: [] }],
+    // fallbackData: [{ total: 0, awards: [] }],
     suspense: true,
     initialSize: 1,
     dedupingInterval: 36000,
