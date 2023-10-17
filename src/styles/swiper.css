@@ -1,0 +1,16 @@
+@import 'swiper/css';
+@import 'swiper/css/pagination';
+
+.swiper {
+  position: relative;
+}
+
+.swiper .swiper-pagination {
+  position: absolute;
+  bottom: 0;
+}
+
+.swiper .swiper-pagination-bullet {
+  @apply bg-primary;
+  margin: 0 10px;
+}

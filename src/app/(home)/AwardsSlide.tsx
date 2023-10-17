@@ -3,9 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import useSWRInfinite from 'swr/infinite';
 
@@ -14,6 +12,7 @@ import type { Award } from '@prisma/client';
 
 import { ROUTE } from '@/constants/route';
 import { getData } from '@/libs/api/core';
+import '@/styles/swiper.css';
 
 export const AwardItem = ({ award }: { award: Award }) => {
   return (
@@ -55,12 +54,12 @@ type UserAwardsDto = {
 
 export default function AwardsSwiper() {
   const { data, setSize } = useSWRInfinite<UserAwardsDto>(getKey, getData, {
+    fallbackData: [{ total: 0, awards: [] }],
     suspense: true,
-    initialSize: 2,
+    initialSize: 1,
     dedupingInterval: 36000,
     refreshInterval: 36000,
     revalidateOnFocus: false,
-    revalidateOnMount: false,
   });
 
   const handleSlideChange = () => {
@@ -70,15 +69,22 @@ export default function AwardsSwiper() {
   return (
     <Swiper
       slidesPerView={1}
-      pagination={{
-        dynamicBullets: true,
-      }}
-      onSlideChange={handleSlideChange}
-      modules={[Pagination]}
+      pagination={true}
+      onSwiper={handleSlideChange}
+      spaceBetween={16}
+      modules={[Navigation, Pagination]}
       className="w-full"
     >
-      {Array.from({ length: data ? Math.floor(data[0].total / 16) + 1 : 1 }).map((_, i) => (
-        <AwardSwiperSlide key={i} awards={data && data[i] ? data[i].awards : []} />
+      {Array.from({
+        length: data
+          ? data[0].total % 16 === 0
+            ? Math.floor(data[0].total / 16)
+            : Math.floor(data[0].total / 16) + 1
+          : 1,
+      }).map((_, i) => (
+        <SwiperSlide key={i}>
+          <AwardSwiperSlide awards={data && data[i] ? data[i].awards : []} />
+        </SwiperSlide>
       ))}
     </Swiper>
   );
@@ -86,7 +92,7 @@ export default function AwardsSwiper() {
 
 const AwardSwiperSlide = ({ awards }: { awards: Award[] }) => {
   return (
-    <SwiperSlide>
+    <div>
       {Array.from({ length: 4 }).map((_, j) => (
         <AwardContainer key={j}>
           {awards.slice(j * 4, j * 4 + 4).map(award => (
@@ -94,7 +100,7 @@ const AwardSwiperSlide = ({ awards }: { awards: Award[] }) => {
           ))}
         </AwardContainer>
       ))}
-    </SwiperSlide>
+    </div>
   );
 };
 
