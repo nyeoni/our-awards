@@ -18,14 +18,7 @@ export const metadata = {
     site_name: 'Our Awards',
     title: '우리들의 시상식',
     description: '서로 상을 주고 받아보아요!',
-    images: [
-      {
-        url: '/assets/preview.png',
-        width: 800,
-        height: 600,
-        alt: 'Our Awards',
-      },
-    ],
+    images: ['/assets/preview.png'],
   },
 };
 

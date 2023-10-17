@@ -1,5 +1,5 @@
 .base {
-  @apply flex w-96 justify-center rounded shadow-md bg-black/70 text-sm p-2.5 mx-5;
+  @apply flex w-96 justify-center rounded shadow-md bg-black/70 text-sm py-2.5 px-3 mx-5;
 }
 
 .container {
