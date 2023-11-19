@@ -6,8 +6,9 @@ import { SWRConfigProvider } from '@/contexts/SWRConfigProvider';
 import '@/styles/global.css';
 
 export const metadata = {
-  title: 'Our Awards',
+  title: '우리들의 시상식',
   description: '상을 주고받아요',
+  keywords: '상, 시상식, 상을 주고받아요, 우리들의 시상식',
   httpEquiv: {
     'Content-Security-Policy': "default-src 'self'; connect-src vitals.vercel-insights.com",
   },
