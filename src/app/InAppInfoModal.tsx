@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 import {
   Button,
@@ -16,7 +16,7 @@ import { Toast, useToast } from '@/components';
 
 type Device = 'ios' | 'android' | null;
 
-export function InAppInfoModal() {
+const InAppInfoModal = () => {
   const [device, setDevice] = useState<Device>('android');
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const { isVisible, message, open, close } = useToast();
@@ -82,4 +82,7 @@ export function InAppInfoModal() {
       <Toast isVisible={isVisible} message={message} onClose={close} />
     </>
   );
-}
+};
+
+// export with memoization
+export const InAppInfoModalMemo = memo(InAppInfoModal);

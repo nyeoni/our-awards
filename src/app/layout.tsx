@@ -5,7 +5,7 @@ import { NextAuthProvider, UIProviders } from '@/contexts';
 import { SWRConfigProvider } from '@/contexts/SWRConfigProvider';
 import '@/styles/global.css';
 
-import { InAppInfoModal } from './InAppInfoModal';
+import { InAppInfoModalMemo } from './InAppInfoModal';
 
 export const metadata = {
   title: '우리들의 시상식',
@@ -50,7 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </main>
             </UIProviders>
             <div id="portal" className="w-0 h-0" />
-            <InAppInfoModal />
+            <InAppInfoModalMemo />
           </NextAuthProvider>
         </SWRConfigProvider>
       </body>
