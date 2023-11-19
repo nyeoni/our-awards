@@ -1,34 +1,30 @@
+import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
-import { withAuth } from 'next-auth/middleware';
+import { getToken } from 'next-auth/jwt';
+import type { NextRequestWithAuth } from 'next-auth/middleware';
 
-export default withAuth(
-  function middleware(req) {
-    const agent = req.headers.get('user-agent')?.toLowerCase() ?? '';
+import withAuth from './libs/withAuth';
 
-    if (agent.indexOf('kakao') > -1 || agent.indexOf('instagram') > -1) {
-      return NextResponse.redirect(new URL('/inapp', req.url));
-    }
-  },
-  {
-    // Options
-    // Required: The minimum level of user required to access this route
-    // If not specified, all authenticated users are allowed access
-    // Minimum level is 0 (public) through 100 (admin)
-    // If access is denied, the server will respond with HTTP error code 403 (Forbidden)
-    // level: 10,
-    // callbacks: {
-    //   authorized: ({ token }) => {
-    //     console.log('authorized', token);
-    //     return !!token;
-    //   },
-    // },
-    pages: {
-      signIn: '/login',
-    },
+const withAuthList = ['/', '/create'];
+
+export async function middleware(req: NextRequest) {
+  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+  // 사용자가 요청하는 페이지 pathname
+  const agent = req.headers.get('user-agent') || '';
+  const isInApp = /kakao|instagram/i;
+
+  if (isInApp.test(agent)) {
+    return NextResponse.redirect(new URL('/inapp', req.url));
   }
-);
+
+  const { pathname } = req.nextUrl;
+  // 해당 pathname이 미리 정의해둔 withAuth, withOutAuth 배열 중 어디에 속하는지 확인
+  const isWithAuth = withAuthList.includes(pathname);
+
+  if (isWithAuth) return withAuth(req as NextRequestWithAuth, !!token as any);
+}
 
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|assets|svgs|style|result|inapp).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|assets|fonts|svgs|style|styles).*)'],
 };
