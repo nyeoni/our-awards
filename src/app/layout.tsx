@@ -5,6 +5,8 @@ import { NextAuthProvider, UIProviders } from '@/contexts';
 import { SWRConfigProvider } from '@/contexts/SWRConfigProvider';
 import '@/styles/global.css';
 
+import { InAppInfoModal } from './InAppInfoModal';
+
 export const metadata = {
   title: '우리들의 시상식',
   description: '상을 주고받아요',
@@ -48,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </main>
             </UIProviders>
             <div id="portal" className="w-0 h-0" />
+            <InAppInfoModal />
           </NextAuthProvider>
         </SWRConfigProvider>
       </body>
