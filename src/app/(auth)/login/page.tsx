@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation';
 
 import { signIn } from 'next-auth/react';
 
+import { InAppInfoModalMemo } from '@/app/InAppInfoModal';
 import { Logo, Toast } from '@/components';
 import { GoogleBtn, KakaoBtn, NaverBtn } from '@/components/oauth';
 
@@ -69,6 +70,7 @@ export default function Page() {
       </div>
       <BgAnimation />
       <Toast isVisible={isError} message={error.message} />
+      <InAppInfoModalMemo />
     </>
   );
 }

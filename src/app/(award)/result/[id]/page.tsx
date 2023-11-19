@@ -4,6 +4,8 @@ import type { User } from 'next-auth';
 
 import type { Award } from '@prisma/client';
 
+import { InAppInfoModalMemo } from '@/app/InAppInfoModal';
+
 import { AwardResult } from '../AwardResult';
 import { SparklesAnimation } from '../SparklesAnimation';
 
@@ -53,6 +55,7 @@ export default async function Page({ params }: { params: { id: string } }) {
     <>
       <AwardResult award={award} />
       <SparklesAnimation />
+      <InAppInfoModalMemo />
     </>
   );
 }

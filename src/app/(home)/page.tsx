@@ -7,6 +7,7 @@ import { Button } from '@nextui-org/react';
 
 import { ROUTE } from '@/constants/route';
 
+import { InAppInfoModalMemo } from '../InAppInfoModal';
 import { AwardsSlideSkeleton } from './AwardsSlide';
 import { IntroSkeleton } from './Intro';
 
